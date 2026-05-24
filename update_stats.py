@@ -642,7 +642,7 @@ def keyword_buttons(repo: dict[str, Any]) -> str:
     )
 
 
-def repo_row(repo: dict[str, Any], rank: int | None = None, include_cluster: bool = False, include_traction: bool = False) -> str:
+def repo_row(repo: dict[str, Any], include_cluster: bool = False, include_traction: bool = False) -> str:
     pushed_ts = int(iso_to_datetime(repo["pushed_at"]).timestamp()) if repo.get("pushed_at") else 0
     score = int(repo.get("traction_score") or 0)
     desc = escape(repo["description"] or "No description provided.")
@@ -656,8 +656,6 @@ def repo_row(repo: dict[str, Any], rank: int | None = None, include_cluster: boo
     )
     language = escape(repo["language"])
     cells = []
-    if rank is not None:
-        cells.append(f'<td class="rank-cell">{rank}</td>')
     cells.append(f"<td>{name_cell}</td>")
     cells.append(f'<td><span class="tag {language_class(repo["language"])}">{language}</span></td>')
     cells.append(description_cell(desc, topic_html))
@@ -748,8 +746,8 @@ def traction_table(repos: list[dict[str, Any]]) -> str:
     for repo in top:
         repo["traction_pct"] = round((repo["traction_score"] / max_score) * 100)
     rows = "\n".join(
-        repo_row(repo, rank=rank, include_cluster=True, include_traction=True)
-        for rank, repo in enumerate(top, start=1)
+        repo_row(repo, include_cluster=True, include_traction=True)
+        for repo in top
     )
     return f"""
 <section class="repo-section traction-section" id="section-traction" data-section>
@@ -763,7 +761,6 @@ def traction_table(repos: list[dict[str, Any]]) -> str:
   <div class="table-wrap">
     <table>
       <colgroup>
-        <col class="col-rank">
         <col class="col-traction-repository">
         <col class="col-traction-language">
         <col class="col-traction-description">
@@ -772,7 +769,6 @@ def traction_table(repos: list[dict[str, Any]]) -> str:
       </colgroup>
       <thead>
         <tr>
-          <th>#</th>
           <th>Repository</th>
           <th>Language</th>
           <th>Description</th>
@@ -1086,7 +1082,6 @@ def render_html(
     table-layout: fixed;
   }}
   .traction-section table {{ min-width: 1240px; }}
-  .col-rank {{ width: 4%; }}
   .col-repository {{ width: 22%; }}
   .col-language {{ width: 11%; }}
   .col-description {{ width: 47%; }}
@@ -1204,8 +1199,7 @@ def render_html(
   }}
   .star-count,
   .fork-count,
-  .commit-count,
-  .rank-cell {{
+  .commit-count {{
     font-family: 'JetBrains Mono', monospace;
   }}
   .star-count {{
@@ -1218,11 +1212,6 @@ def render_html(
     color: var(--text-muted);
     font-size: 11px;
     font-weight: 600;
-  }}
-  .rank-cell {{
-    color: var(--anthropic);
-    font-weight: 800;
-    white-space: nowrap;
   }}
   .last-updated {{
     display: block;
