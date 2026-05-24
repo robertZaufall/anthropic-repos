@@ -1,0 +1,139 @@
+{
+  "snapshots": [
+    {
+      "date": "2026-05-24",
+      "repos": {
+        "anthropics/anthropic-cli": {
+          "forks": 51,
+          "pushed_at": "2026-05-22T20:21:18Z",
+          "stars": 397
+        },
+        "anthropics/anthropic-sdk-csharp": {
+          "forks": 82,
+          "pushed_at": "2026-05-21T20:05:00Z",
+          "stars": 274
+        },
+        "anthropics/anthropic-sdk-go": {
+          "forks": 174,
+          "pushed_at": "2026-05-22T16:59:40Z",
+          "stars": 1055
+        },
+        "anthropics/anthropic-sdk-java": {
+          "forks": 83,
+          "pushed_at": "2026-05-21T20:08:08Z",
+          "stars": 318
+        },
+        "anthropics/anthropic-sdk-python": {
+          "forks": 688,
+          "pushed_at": "2026-05-23T08:36:26Z",
+          "stars": 3510
+        },
+        "anthropics/anthropic-sdk-ruby": {
+          "forks": 59,
+          "pushed_at": "2026-05-21T20:02:45Z",
+          "stars": 342
+        },
+        "anthropics/anthropic-sdk-typescript": {
+          "forks": 336,
+          "pushed_at": "2026-05-23T08:36:52Z",
+          "stars": 1966
+        },
+        "anthropics/buffa": {
+          "forks": 49,
+          "pushed_at": "2026-05-23T23:19:03Z",
+          "stars": 736
+        },
+        "anthropics/claude-agent-sdk-demos": {
+          "forks": 355,
+          "pushed_at": "2026-03-13T17:15:43Z",
+          "stars": 2414
+        },
+        "anthropics/claude-agent-sdk-python": {
+          "forks": 1032,
+          "pushed_at": "2026-05-23T04:20:28Z",
+          "stars": 7021
+        },
+        "anthropics/claude-agent-sdk-typescript": {
+          "forks": 170,
+          "pushed_at": "2026-05-23T04:03:49Z",
+          "stars": 1455
+        },
+        "anthropics/claude-code": {
+          "forks": 20680,
+          "pushed_at": "2026-05-23T04:03:51Z",
+          "stars": 126006
+        },
+        "anthropics/claude-code-action": {
+          "forks": 1860,
+          "pushed_at": "2026-05-23T04:05:48Z",
+          "stars": 7696
+        },
+        "anthropics/claude-code-base-action": {
+          "forks": 605,
+          "pushed_at": "2026-05-23T04:04:53Z",
+          "stars": 846
+        },
+        "anthropics/claude-cookbooks": {
+          "forks": 5002,
+          "pushed_at": "2026-05-23T08:40:20Z",
+          "stars": 43650
+        },
+        "anthropics/claude-desktop-buddy": {
+          "forks": 306,
+          "pushed_at": "2026-04-16T23:25:07Z",
+          "stars": 1974
+        },
+        "anthropics/claude-for-legal": {
+          "forks": 1214,
+          "pushed_at": "2026-05-22T15:55:53Z",
+          "stars": 7540
+        },
+        "anthropics/claude-plugins-official": {
+          "forks": 2856,
+          "pushed_at": "2026-05-23T17:06:01Z",
+          "stars": 26445
+        },
+        "anthropics/claude-quickstarts": {
+          "forks": 2874,
+          "pushed_at": "2026-05-13T23:11:25Z",
+          "stars": 16744
+        },
+        "anthropics/connect-rust": {
+          "forks": 36,
+          "pushed_at": "2026-05-22T18:23:05Z",
+          "stars": 386
+        },
+        "anthropics/cwc-long-running-agents": {
+          "forks": 35,
+          "pushed_at": "2026-05-13T00:54:43Z",
+          "stars": 354
+        },
+        "anthropics/cwc-workshops": {
+          "forks": 95,
+          "pushed_at": "2026-05-18T15:10:42Z",
+          "stars": 375
+        },
+        "anthropics/financial-services": {
+          "forks": 3791,
+          "pushed_at": "2026-05-21T17:15:48Z",
+          "stars": 27038
+        },
+        "anthropics/knowledge-work-plugins": {
+          "forks": 1590,
+          "pushed_at": "2026-05-23T14:36:31Z",
+          "stars": 12830
+        },
+        "anthropics/life-sciences": {
+          "forks": 71,
+          "pushed_at": "2026-05-08T16:54:54Z",
+          "stars": 392
+        },
+        "anthropics/skills": {
+          "forks": 16498,
+          "pushed_at": "2026-05-19T14:11:10Z",
+          "stars": 139732
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "anthropic-repos-proxy",
+  "main": "worker.js",
+  "compatibility_date": "2026-05-24",
+  "routes": [
+    {
+      "pattern": "glaubi.net/anthropic*",
+      "zone_name": "glaubi.net"
+    }
+  ]
+}

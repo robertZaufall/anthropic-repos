@@ -1,0 +1,4 @@
+.wrangler/
+.playwright-cli/
+__pycache__/
+output/

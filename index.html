@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  var p = location.pathname;
+  if (p.charAt(p.length - 1) !== '/') p += '/';
+  document.write('<base href="' + p + '">');
+</script>
+<title>Anthropic GitHub Repository Atlas</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          anthropic: {
+            ink: '#14110f',
+            panel: '#1d1814',
+            clay: '#d97757',
+            cream: '#f4efe7',
+            muted: '#b8a99d',
+          },
+        },
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root {
+    --bg: #14110f;
+    --surface: #1b1714;
+    --surface2: #241e19;
+    --surface3: #302821;
+    --border: #46382f;
+    --text: #f4efe7;
+    --text-muted: #b8a99d;
+    --anthropic: #d97757;
+    --clay: #d97757;
+    --amber: #f1c27b;
+    --teal: #7ccfc3;
+    --blue: #83b5ff;
+    --violet: #c5a7ff;
+    --green: #9ad47c;
+    --red: #ff947d;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      linear-gradient(rgba(244, 239, 231, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244, 239, 231, 0.022) 1px, transparent 1px),
+      radial-gradient(circle at 84% -8%, rgba(217, 119, 87, 0.24), transparent 30rem),
+      radial-gradient(circle at 9% 8%, rgba(124, 207, 195, 0.12), transparent 28rem),
+      linear-gradient(180deg, #18120f 0%, var(--bg) 42rem);
+    background-size: 56px 56px, 56px 56px, auto, auto, auto;
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  a { color: inherit; }
+  .shell { width: min(1480px, calc(100vw - 32px)); margin: 0 auto; }
+  .logo-box {
+    width: 40px;
+    height: 40px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f1d7c7, var(--anthropic) 55%, #9a4b37);
+    color: #14110f;
+    font: 900 15px 'JetBrains Mono', monospace;
+    box-shadow: 0 0 28px rgba(217, 119, 87, 0.32);
+  }
+  .metric-card {
+    min-width: 148px;
+    padding: 13px 15px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(29, 24, 20, 0.82);
+    box-shadow: inset 0 1px 0 rgba(244, 239, 231, 0.045);
+  }
+  .metric-card strong {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    color: var(--text);
+  }
+  .metric-card span {
+    display: block;
+    margin-top: 3px;
+    color: var(--text-muted);
+    font: 700 11px 'JetBrains Mono', monospace;
+  }
+  .jump-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(29, 24, 20, 0.56);
+  }
+  .jump-group-label {
+    padding: 0 4px 0 2px;
+    color: var(--text-muted);
+    font: 700 10px 'JetBrains Mono', monospace;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+  .jump-group a {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(217, 119, 87, 0.32);
+    border-radius: 7px;
+    padding: 8px 10px;
+    background: rgba(217, 119, 87, 0.07);
+    color: var(--text);
+    text-decoration: none;
+    font: 700 11px 'JetBrains Mono', monospace;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .jump-group a:hover {
+    border-color: var(--anthropic);
+    color: #ffd8c5;
+    background: rgba(217, 119, 87, 0.13);
+  }
+  .search-panel {
+    display: grid;
+    grid-template-columns: auto minmax(240px, 1fr) auto auto auto auto auto;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background:
+      radial-gradient(circle at top right, rgba(217, 119, 87, 0.16), transparent 24rem),
+      linear-gradient(180deg, rgba(36, 30, 25, 0.98), rgba(25, 21, 18, 0.98));
+  }
+  .search-label,
+  .sort-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .search-input {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(16, 13, 11, 0.95);
+    color: var(--text);
+    outline: none;
+    padding: 12px 14px;
+    font: 500 14px 'Inter', system-ui, sans-serif;
+  }
+  .search-input:focus {
+    border-color: rgba(217, 119, 87, 0.82);
+    box-shadow: 0 0 0 3px rgba(217, 119, 87, 0.14);
+  }
+  .button {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: rgba(16, 13, 11, 0.95);
+    color: var(--text);
+    padding: 12px 13px;
+    font: 700 12px 'JetBrains Mono', monospace;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .button:hover,
+  .button.active {
+    border-color: var(--anthropic);
+    color: #ffd8c5;
+  }
+  .button:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .repo-section { margin-top: 34px; }
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: end;
+    margin-bottom: 14px;
+  }
+  .section-header h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  .section-header p {
+    margin: 6px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .section-mark {
+    width: 10px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--anthropic);
+    display: inline-block;
+  }
+  .section-mark-clay { background: var(--clay); }
+  .section-mark-amber { background: var(--amber); }
+  .section-mark-teal { background: var(--teal); }
+  .section-mark-blue { background: var(--blue); }
+  .section-mark-violet { background: var(--violet); }
+  .section-mark-green { background: var(--green); }
+  .count-pill,
+  .cluster-pill {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 8px;
+    color: var(--text-muted);
+    background: rgba(16, 13, 11, 0.48);
+    font: 600 11px 'JetBrains Mono', monospace;
+  }
+  .count-pill { white-space: nowrap; }
+  .cluster-pill {
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .cluster-link {
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .cluster-link:hover {
+    color: #ffd8c5;
+    border-color: var(--anthropic);
+  }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    scrollbar-color: #5b463a #17120f;
+    scrollbar-width: thin;
+  }
+  table {
+    width: 100%;
+    min-width: 1120px;
+    border-collapse: collapse;
+    font-size: 13px;
+    table-layout: fixed;
+  }
+  .traction-section table { min-width: 1240px; }
+  .col-rank { width: 4%; }
+  .col-repository { width: 22%; }
+  .col-language { width: 11%; }
+  .col-description { width: 47%; }
+  .col-github { width: 20%; }
+  .col-traction-repository { width: 17%; }
+  .col-traction-language { width: 9%; }
+  .col-traction-description { width: 42%; }
+  .col-traction-cluster { width: 13%; }
+  .col-traction-github { width: 15%; }
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    padding: 13px 14px;
+    text-align: left;
+    background: var(--surface2);
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+    font: 700 11px 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+  }
+  td {
+    padding: 13px 14px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--border);
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(217, 119, 87, 0.055); }
+  .repo-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 700 14px 'JetBrains Mono', monospace;
+    white-space: nowrap;
+  }
+  .repo-name a {
+    color: var(--text);
+    text-decoration: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .repo-name a:hover,
+  .repo-slug:hover {
+    color: #ffd8c5;
+    text-decoration: underline;
+  }
+  .repo-slug {
+    display: block;
+    margin-top: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font: 500 11px 'JetBrains Mono', monospace;
+    overflow-wrap: anywhere;
+  }
+  .avatar {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    background: var(--surface3);
+    flex: 0 0 auto;
+  }
+  .tag,
+  .keyword-button {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 7px;
+    font: 700 10px 'JetBrains Mono', monospace;
+    background: rgba(244, 239, 231, 0.1);
+    color: var(--text-muted);
+  }
+  .tag {
+    font-size: 11px;
+    white-space: normal;
+    line-height: 1.35;
+  }
+  .lang-python { background: rgba(154, 212, 124, 0.14); color: var(--green); }
+  .lang-typescript { background: rgba(131, 181, 255, 0.14); color: var(--blue); }
+  .lang-jupyter { background: rgba(241, 194, 123, 0.14); color: var(--amber); }
+  .lang-shell { background: rgba(217, 119, 87, 0.16); color: var(--clay); }
+  .lang-go { background: rgba(124, 207, 195, 0.14); color: var(--teal); }
+  .lang-rust { background: rgba(255, 148, 125, 0.14); color: var(--red); }
+  .lang-kotlin, .lang-ruby, .lang-csharp, .lang-cpp { background: rgba(197, 167, 255, 0.15); color: var(--violet); }
+  .topic-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 7px;
+  }
+  .keyword-button {
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .keyword-button:hover,
+  .keyword-button:focus-visible {
+    color: #ffd8c5;
+    background: rgba(217, 119, 87, 0.16);
+    outline: none;
+  }
+  .description-cell {
+    color: var(--text);
+    max-width: 54rem;
+  }
+  .github-cell { min-width: 210px; }
+  .gh-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+    align-items: center;
+  }
+  .star-count,
+  .fork-count,
+  .commit-count,
+  .rank-cell {
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .star-count {
+    color: var(--amber);
+    font-weight: 800;
+    font-size: 13px;
+  }
+  .fork-count,
+  .commit-count {
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .rank-cell {
+    color: var(--anthropic);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .last-updated {
+    display: block;
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+  }
+  .activity-block { margin-top: 8px; }
+  .activity-bar {
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(244, 239, 231, 0.14);
+    overflow: hidden;
+  }
+  .activity-bar span {
+    display: block;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--anthropic), var(--amber), var(--teal));
+  }
+  .activity-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 5px;
+    color: var(--text-muted);
+    font: 600 10px 'JetBrains Mono', monospace;
+  }
+  .hidden { display: none !important; }
+  .footer {
+    margin-top: 30px;
+    color: var(--text-muted);
+    font: 500 11px 'JetBrains Mono', monospace;
+    line-height: 1.7;
+  }
+  .footer a { color: #ffd8c5; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+  @media (max-width: 900px) {
+    .shell { width: min(100vw - 28px, 1480px); }
+    .search-panel { grid-template-columns: 1fr; }
+    .button, .search-label, .sort-label { width: 100%; }
+    .section-header { display: block; }
+    .count-pill { margin-top: 10px; }
+  }
+</style>
+</head>
+<body class="min-h-screen py-8 md:py-10">
+  <header class="shell mb-6">
+    <h1 class="m-0 flex items-center gap-3 font-mono text-[26px] font-bold leading-tight text-anthropic-cream md:text-[30px]">
+      <span class="logo-box">AN</span>Anthropic GitHub Repository Atlas
+    </h1>
+    <p class="mt-3 max-w-4xl text-sm leading-6 text-anthropic-muted">
+      Searchable snapshot of public Anthropic repositories from
+      <a class="text-[#ffd8c5] underline decoration-[#d97757]/40 underline-offset-4" href="https://github.com/orgs/anthropics/repositories" target="_blank" rel="noreferrer">github.com/anthropics</a>.
+      Included repositories have more than 200 stars and at least one commit within the last three months, since 2026-02-24.
+    </p>
+    <div class="mt-5 flex flex-wrap gap-2.5" aria-label="Catalog summary">
+      <div class="metric-card"><strong>26</strong><span>qualified repos</span></div>
+      <div class="metric-card"><strong>431k</strong><span>combined stars</span></div>
+      <div class="metric-card"><strong>846</strong><span>commits in 30d</span></div>
+      <div class="metric-card"><strong>2.2k</strong><span>commits since 2026-02-24</span></div>
+      <div class="metric-card"><strong>6</strong><span>purpose clusters</span></div>
+    </div>
+    <nav class="mt-5 flex flex-wrap gap-3" aria-label="Section links">
+      <div class="jump-group"><span class="jump-group-label">Clusters</span><a href="#section-traction">Fresh Traction</a>
+<a href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a>
+<a href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a>
+<a href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a>
+<a href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a>
+<a href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a>
+<a href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></div>
+    </nav>
+  </header>
+
+  <div class="shell search-panel" role="search">
+    <div class="search-label">Search</div>
+    <input id="global-table-search" class="search-input" type="search" autocomplete="off" spellcheck="false" placeholder="repo, topic, language, description">
+    <button id="global-search-clear" class="button" type="button" disabled>Clear</button>
+    <div class="sort-label">Sort by</div>
+    <button id="sort-score" class="button active" type="button">Traction</button>
+    <button id="sort-stars" class="button" type="button">Stars</button>
+    <button id="sort-fresh" class="button" type="button">Freshness</button>
+  </div>
+
+  <main class="shell">
+
+<section class="repo-section traction-section" id="section-traction" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-clay"></span>Wide Audience With Fresh Traction</h2>
+      <p>Ranked by recent commits, freshness, stars, and forks so active projects with broad audiences rise first.</p>
+    </div>
+    <span class="count-pill">Top 25</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-rank">
+        <col class="col-traction-repository">
+        <col class="col-traction-language">
+        <col class="col-traction-description">
+        <col class="col-traction-cluster">
+        <col class="col-traction-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>Cluster</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="126006" data-pushed="1779509031" data-score="996" data-name="claude-code" data-cluster="claude-code-agents">
+  <td class="rank-cell">1</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">claude-code</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 126k</span>
+      <span class="fork-count">forks 20.7k</span>
+      <span class="commit-count">commits 638</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 996">
+      <div class="activity-bar"><span style="width: 100%"></span></div>
+      <div class="activity-meta">
+        <span>37 commits / 30d</span>
+        <span>score 996</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="139732" data-pushed="1779199870" data-score="985" data-name="skills" data-cluster="skills-plugins">
+  <td class="rank-cell">2</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">skills</a></div><a class="repo-slug" href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">anthropics/skills</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Public repository for Agent Skills<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 140k</span>
+      <span class="fork-count">forks 16.5k</span>
+      <span class="commit-count">commits 36</span>
+    </div>
+    <span class="last-updated">pushed May 19, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 985">
+      <div class="activity-bar"><span style="width: 99%"></span></div>
+      <div class="activity-meta">
+        <span>5 commits / 30d</span>
+        <span>score 985</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="43650" data-pushed="1779525620" data-score="648" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
+  <td class="rank-cell">3</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">claude-cookbooks</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">anthropics/claude-cookbooks</a></td>
+  <td><span class="tag lang-jupyter">Jupyter Notebook</span></td>
+  <td class="description-cell">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 43.6k</span>
+      <span class="fork-count">forks 5k</span>
+      <span class="commit-count">commits 575</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 648">
+      <div class="activity-bar"><span style="width: 65%"></span></div>
+      <div class="activity-meta">
+        <span>34 commits / 30d</span>
+        <span>score 648</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="26445" data-pushed="1779555961" data-score="605" data-name="claude-plugins-official" data-cluster="skills-plugins">
+  <td class="rank-cell">4</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">claude-plugins-official</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Official, Anthropic-managed directory of high quality Claude Code Plugins.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 26.4k</span>
+      <span class="fork-count">forks 2.9k</span>
+      <span class="commit-count">commits 405</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 605">
+      <div class="activity-bar"><span style="width: 61%"></span></div>
+      <div class="activity-meta">
+        <span>102 commits / 30d</span>
+        <span>score 605</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="27038" data-pushed="1779383748" data-score="511" data-name="financial-services" data-cluster="domain-solutions">
+  <td class="rank-cell">5</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">financial-services</a></div><a class="repo-slug" href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 27k</span>
+      <span class="fork-count">forks 3.8k</span>
+      <span class="commit-count">commits 58</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 511">
+      <div class="activity-bar"><span style="width: 51%"></span></div>
+      <div class="activity-meta">
+        <span>12 commits / 30d</span>
+        <span>score 511</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="12830" data-pushed="1779546991" data-score="413" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
+  <td class="rank-cell">6</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">knowledge-work-plugins</a></div><a class="repo-slug" href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 12.8k</span>
+      <span class="fork-count">forks 1.6k</span>
+      <span class="commit-count">commits 79</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 413">
+      <div class="activity-bar"><span style="width: 41%"></span></div>
+      <div class="activity-meta">
+        <span>31 commits / 30d</span>
+        <span>score 413</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="7021" data-pushed="1779510028" data-score="405" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
+  <td class="rank-cell">7</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">claude-agent-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-python</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7k</span>
+      <span class="fork-count">forks 1k</span>
+      <span class="commit-count">commits 586</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 405">
+      <div class="activity-bar"><span style="width: 41%"></span></div>
+      <div class="activity-meta">
+        <span>98 commits / 30d</span>
+        <span>score 405</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="16744" data-pushed="1778713885" data-score="380" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
+  <td class="rank-cell">8</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">claude-quickstarts</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">anthropics/claude-quickstarts</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 16.7k</span>
+      <span class="fork-count">forks 2.9k</span>
+      <span class="commit-count">commits 84</span>
+    </div>
+    <span class="last-updated">pushed May 13, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 380">
+      <div class="activity-bar"><span style="width: 38%"></span></div>
+      <div class="activity-meta">
+        <span>1 commits / 30d</span>
+        <span>score 380</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="7696" data-pushed="1779509148" data-score="362" data-name="claude-code-action" data-cluster="claude-code-agents">
+  <td class="rank-cell">9</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">claude-code-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">anthropics/claude-code-action</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7.7k</span>
+      <span class="fork-count">forks 1.9k</span>
+      <span class="commit-count">commits 606</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 362">
+      <div class="activity-bar"><span style="width: 36%"></span></div>
+      <div class="activity-meta">
+        <span>42 commits / 30d</span>
+        <span>score 362</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="7540" data-pushed="1779465353" data-score="341" data-name="claude-for-legal" data-cluster="domain-solutions">
+  <td class="rank-cell">10</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">claude-for-legal</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">anthropics/claude-for-legal</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">A suite of plugins for legal workflows<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7.5k</span>
+      <span class="fork-count">forks 1.2k</span>
+      <span class="commit-count">commits 29</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 341">
+      <div class="activity-bar"><span style="width: 34%"></span></div>
+      <div class="activity-meta">
+        <span>29 commits / 30d</span>
+        <span>score 341</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="3510" data-pushed="1779525386" data-score="279" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
+  <td class="rank-cell">11</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropic-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-python</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 3.5k</span>
+      <span class="fork-count">forks 688</span>
+      <span class="commit-count">commits 1.1k</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 279">
+      <div class="activity-bar"><span style="width: 28%"></span></div>
+      <div class="activity-meta">
+        <span>36 commits / 30d</span>
+        <span>score 279</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="1966" data-pushed="1779525412" data-score="225" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
+  <td class="rank-cell">12</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropic-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-typescript</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2k</span>
+      <span class="fork-count">forks 336</span>
+      <span class="commit-count">commits 1.1k</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 225">
+      <div class="activity-bar"><span style="width: 23%"></span></div>
+      <div class="activity-meta">
+        <span>24 commits / 30d</span>
+        <span>score 225</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="1455" data-pushed="1779509029" data-score="209" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
+  <td class="rank-cell">13</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">claude-agent-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-typescript</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 1.5k</span>
+      <span class="fork-count">forks 170</span>
+      <span class="commit-count">commits 201</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 209">
+      <div class="activity-bar"><span style="width: 21%"></span></div>
+      <div class="activity-meta">
+        <span>28 commits / 30d</span>
+        <span>score 209</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="1055" data-pushed="1779469180" data-score="208" data-name="anthropic-sdk-go" data-cluster="sdks-api-cli">
+  <td class="rank-cell">14</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropic-sdk-go</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-go</a></td>
+  <td><span class="tag lang-go">Go</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs via Go<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 1.1k</span>
+      <span class="fork-count">forks 174</span>
+      <span class="commit-count">commits 555</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 208">
+      <div class="activity-bar"><span style="width: 21%"></span></div>
+      <div class="activity-meta">
+        <span>46 commits / 30d</span>
+        <span>score 208</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="736" data-pushed="1779578343" data-score="206" data-name="buffa" data-cluster="systems-protocols">
+  <td class="rank-cell">15</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">buffa</a></div><a class="repo-slug" href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">anthropics/buffa</a></td>
+  <td><span class="tag lang-rust">Rust</span></td>
+  <td class="description-cell">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 736</span>
+      <span class="fork-count">forks 49</span>
+      <span class="commit-count">commits 97</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 206">
+      <div class="activity-bar"><span style="width: 21%"></span></div>
+      <div class="activity-meta">
+        <span>61 commits / 30d</span>
+        <span>score 206</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="846" data-pushed="1779509093" data-score="190" data-name="claude-code-base-action" data-cluster="claude-code-agents">
+  <td class="rank-cell">16</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">claude-code-base-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">anthropics/claude-code-base-action</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 846</span>
+      <span class="fork-count">forks 605</span>
+      <span class="commit-count">commits 371</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 190">
+      <div class="activity-bar"><span style="width: 19%"></span></div>
+      <div class="activity-meta">
+        <span>30 commits / 30d</span>
+        <span>score 190</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="386" data-pushed="1779474185" data-score="166" data-name="connect-rust" data-cluster="systems-protocols">
+  <td class="rank-cell">17</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">connect-rust</a></div><a class="repo-slug" href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">anthropics/connect-rust</a></td>
+  <td><span class="tag lang-rust">Rust</span></td>
+  <td class="description-cell">An implementation of the ConnectRPC protocol for Rust<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 386</span>
+      <span class="fork-count">forks 36</span>
+      <span class="commit-count">commits 90</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 166">
+      <div class="activity-bar"><span style="width: 17%"></span></div>
+      <div class="activity-meta">
+        <span>49 commits / 30d</span>
+        <span>score 166</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="318" data-pushed="1779394088" data-score="159" data-name="anthropic-sdk-java" data-cluster="sdks-api-cli">
+  <td class="rank-cell">18</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropic-sdk-java</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-java</a></td>
+  <td><span class="tag lang-kotlin">Kotlin</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 318</span>
+      <span class="fork-count">forks 83</span>
+      <span class="commit-count">commits 618</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 159">
+      <div class="activity-bar"><span style="width: 16%"></span></div>
+      <div class="activity-meta">
+        <span>47 commits / 30d</span>
+        <span>score 159</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="397" data-pushed="1779481278" data-score="154" data-name="anthropic-cli" data-cluster="sdks-api-cli">
+  <td class="rank-cell">19</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropic-cli</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropics/anthropic-cli</a></td>
+  <td><span class="tag lang-go">Go</span></td>
+  <td class="description-cell">The CLI for the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 397</span>
+      <span class="fork-count">forks 51</span>
+      <span class="commit-count">commits 148</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 154">
+      <div class="activity-bar"><span style="width: 15%"></span></div>
+      <div class="activity-meta">
+        <span>34 commits / 30d</span>
+        <span>score 154</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="342" data-pushed="1779393765" data-score="148" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
+  <td class="rank-cell">20</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropic-sdk-ruby</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-ruby</a></td>
+  <td><span class="tag lang-ruby">Ruby</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 342</span>
+      <span class="fork-count">forks 59</span>
+      <span class="commit-count">commits 729</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 148">
+      <div class="activity-bar"><span style="width: 15%"></span></div>
+      <div class="activity-meta">
+        <span>35 commits / 30d</span>
+        <span>score 148</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="274" data-pushed="1779393900" data-score="147" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
+  <td class="rank-cell">21</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropic-sdk-csharp</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-csharp</a></td>
+  <td><span class="tag lang-csharp">C#</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in C#<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 274</span>
+      <span class="fork-count">forks 82</span>
+      <span class="commit-count">commits 344</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 147">
+      <div class="activity-bar"><span style="width: 15%"></span></div>
+      <div class="activity-meta">
+        <span>40 commits / 30d</span>
+        <span>score 147</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="375" data-pushed="1779117042" data-score="128" data-name="cwc-workshops" data-cluster="learning-quickstarts">
+  <td class="rank-cell">22</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 375</span>
+      <span class="fork-count">forks 95</span>
+      <span class="commit-count">commits 19</span>
+    </div>
+    <span class="last-updated">pushed May 18, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 128">
+      <div class="activity-bar"><span style="width: 13%"></span></div>
+      <div class="activity-meta">
+        <span>19 commits / 30d</span>
+        <span>score 128</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="2414" data-pushed="1773422143" data-score="110" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
+  <td class="rank-cell">23</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">claude-agent-sdk-demos</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-demos</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">Claude Code SDK Demos<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2.4k</span>
+      <span class="fork-count">forks 355</span>
+      <span class="commit-count">commits 69</span>
+    </div>
+    <span class="last-updated">pushed Mar 13, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 110">
+      <div class="activity-bar"><span style="width: 11%"></span></div>
+      <div class="activity-meta">
+        <span>0 commits / 30d</span>
+        <span>score 110</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="1974" data-pushed="1776381907" data-score="99" data-name="claude-desktop-buddy" data-cluster="domain-solutions">
+  <td class="rank-cell">24</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">claude-desktop-buddy</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">anthropics/claude-desktop-buddy</a></td>
+  <td><span class="tag lang-cpp">C++</span></td>
+  <td class="description-cell">Reference and an example for the Bluetooth API for makers in Claude Cowork &amp; Claude Code Desktop<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2k</span>
+      <span class="fork-count">forks 306</span>
+      <span class="commit-count">commits 2</span>
+    </div>
+    <span class="last-updated">pushed Apr 16, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 99">
+      <div class="activity-bar"><span style="width: 10%"></span></div>
+      <div class="activity-meta">
+        <span>0 commits / 30d</span>
+        <span>score 99</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="354" data-pushed="1778633683" data-score="95" data-name="cwc-long-running-agents" data-cluster="claude-code-agents">
+  <td class="rank-cell">25</td>
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">cwc-long-running-agents</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">anthropics/cwc-long-running-agents</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 354</span>
+      <span class="fork-count">forks 35</span>
+      <span class="commit-count">commits 3</span>
+    </div>
+    <span class="last-updated">pushed May 13, 2026</span>
+    
+    <div class="activity-block" aria-label="Recent activity score 95">
+      <div class="activity-bar"><span style="width: 10%"></span></div>
+      <div class="activity-meta">
+        <span>3 commits / 30d</span>
+        <span>score 95</span>
+      </div>
+    </div>
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-claude-code-agents" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-clay"></span>Claude Code &amp; Agent Workflows</h2>
+      <p>Claude Code, GitHub Actions, agent SDKs, demos, and long-running automation patterns. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">7 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="126006" data-pushed="1779509031" data-score="996" data-name="claude-code" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">claude-code</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 126k</span>
+      <span class="fork-count">forks 20.7k</span>
+      <span class="commit-count">commits 638</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="7696" data-pushed="1779509148" data-score="362" data-name="claude-code-action" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">claude-code-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">anthropics/claude-code-action</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7.7k</span>
+      <span class="fork-count">forks 1.9k</span>
+      <span class="commit-count">commits 606</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="7021" data-pushed="1779510028" data-score="405" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">claude-agent-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-python</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7k</span>
+      <span class="fork-count">forks 1k</span>
+      <span class="commit-count">commits 586</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="2414" data-pushed="1773422143" data-score="110" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">claude-agent-sdk-demos</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-demos</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">Claude Code SDK Demos<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2.4k</span>
+      <span class="fork-count">forks 355</span>
+      <span class="commit-count">commits 69</span>
+    </div>
+    <span class="last-updated">pushed Mar 13, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="1455" data-pushed="1779509029" data-score="209" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">claude-agent-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-typescript</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 1.5k</span>
+      <span class="fork-count">forks 170</span>
+      <span class="commit-count">commits 201</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="846" data-pushed="1779509093" data-score="190" data-name="claude-code-base-action" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">claude-code-base-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">anthropics/claude-code-base-action</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 846</span>
+      <span class="fork-count">forks 605</span>
+      <span class="commit-count">commits 371</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="354" data-pushed="1778633683" data-score="95" data-name="cwc-long-running-agents" data-cluster="claude-code-agents">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">cwc-long-running-agents</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">anthropics/cwc-long-running-agents</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 354</span>
+      <span class="fork-count">forks 35</span>
+      <span class="commit-count">commits 3</span>
+    </div>
+    <span class="last-updated">pushed May 13, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-sdks-api-cli" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-amber"></span>SDKs, APIs &amp; CLIs</h2>
+      <p>Official API clients and command-line tooling for building directly on Anthropic APIs. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">7 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="3510" data-pushed="1779525386" data-score="279" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropic-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-python</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 3.5k</span>
+      <span class="fork-count">forks 688</span>
+      <span class="commit-count">commits 1.1k</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="1966" data-pushed="1779525412" data-score="225" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropic-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-typescript</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2k</span>
+      <span class="fork-count">forks 336</span>
+      <span class="commit-count">commits 1.1k</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="1055" data-pushed="1779469180" data-score="208" data-name="anthropic-sdk-go" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropic-sdk-go</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-go</a></td>
+  <td><span class="tag lang-go">Go</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs via Go<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 1.1k</span>
+      <span class="fork-count">forks 174</span>
+      <span class="commit-count">commits 555</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="397" data-pushed="1779481278" data-score="154" data-name="anthropic-cli" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropic-cli</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropics/anthropic-cli</a></td>
+  <td><span class="tag lang-go">Go</span></td>
+  <td class="description-cell">The CLI for the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 397</span>
+      <span class="fork-count">forks 51</span>
+      <span class="commit-count">commits 148</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="342" data-pushed="1779393765" data-score="148" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropic-sdk-ruby</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-ruby</a></td>
+  <td><span class="tag lang-ruby">Ruby</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 342</span>
+      <span class="fork-count">forks 59</span>
+      <span class="commit-count">commits 729</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="318" data-pushed="1779394088" data-score="159" data-name="anthropic-sdk-java" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropic-sdk-java</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-java</a></td>
+  <td><span class="tag lang-kotlin">Kotlin</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 318</span>
+      <span class="fork-count">forks 83</span>
+      <span class="commit-count">commits 618</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="274" data-pushed="1779393900" data-score="147" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropic-sdk-csharp</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-csharp</a></td>
+  <td><span class="tag lang-csharp">C#</span></td>
+  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in C#<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 274</span>
+      <span class="fork-count">forks 82</span>
+      <span class="commit-count">commits 344</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-skills-plugins" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-teal"></span>Skills, Plugins &amp; Marketplaces</h2>
+      <p>Reusable Skills, Claude Code plugins, marketplace directories, and packaged workflows. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">3 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="139732" data-pushed="1779199870" data-score="985" data-name="skills" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">skills</a></div><a class="repo-slug" href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">anthropics/skills</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Public repository for Agent Skills<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 140k</span>
+      <span class="fork-count">forks 16.5k</span>
+      <span class="commit-count">commits 36</span>
+    </div>
+    <span class="last-updated">pushed May 19, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="26445" data-pushed="1779555961" data-score="605" data-name="claude-plugins-official" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">claude-plugins-official</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Official, Anthropic-managed directory of high quality Claude Code Plugins.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 26.4k</span>
+      <span class="fork-count">forks 2.9k</span>
+      <span class="commit-count">commits 405</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="12830" data-pushed="1779546991" data-score="413" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">knowledge-work-plugins</a></div><a class="repo-slug" href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 12.8k</span>
+      <span class="fork-count">forks 1.6k</span>
+      <span class="commit-count">commits 79</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-learning-quickstarts" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-blue"></span>Cookbooks, Quickstarts &amp; Learning</h2>
+      <p>Tutorials, notebooks, quickstarts, workshops, and recipes for learning Claude patterns. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">3 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="43650" data-pushed="1779525620" data-score="648" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">claude-cookbooks</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">anthropics/claude-cookbooks</a></td>
+  <td><span class="tag lang-jupyter">Jupyter Notebook</span></td>
+  <td class="description-cell">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 43.6k</span>
+      <span class="fork-count">forks 5k</span>
+      <span class="commit-count">commits 575</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="16744" data-pushed="1778713885" data-score="380" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">claude-quickstarts</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">anthropics/claude-quickstarts</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 16.7k</span>
+      <span class="fork-count">forks 2.9k</span>
+      <span class="commit-count">commits 84</span>
+    </div>
+    <span class="last-updated">pushed May 13, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="375" data-pushed="1779117042" data-score="128" data-name="cwc-workshops" data-cluster="learning-quickstarts">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 375</span>
+      <span class="fork-count">forks 95</span>
+      <span class="commit-count">commits 19</span>
+    </div>
+    <span class="last-updated">pushed May 18, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-domain-solutions" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-violet"></span>Industry &amp; Domain Solutions</h2>
+      <p>Applied repositories for legal, healthcare, financial services, life sciences, and device workflows. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">4 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="27038" data-pushed="1779383748" data-score="511" data-name="financial-services" data-cluster="domain-solutions">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">financial-services</a></div><a class="repo-slug" href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">No description provided.<div class="topic-row"></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 27k</span>
+      <span class="fork-count">forks 3.8k</span>
+      <span class="commit-count">commits 58</span>
+    </div>
+    <span class="last-updated">pushed May 21, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="7540" data-pushed="1779465353" data-score="341" data-name="claude-for-legal" data-cluster="domain-solutions">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">claude-for-legal</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">anthropics/claude-for-legal</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">A suite of plugins for legal workflows<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 7.5k</span>
+      <span class="fork-count">forks 1.2k</span>
+      <span class="commit-count">commits 29</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="1974" data-pushed="1776381907" data-score="99" data-name="claude-desktop-buddy" data-cluster="domain-solutions">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">claude-desktop-buddy</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">anthropics/claude-desktop-buddy</a></td>
+  <td><span class="tag lang-cpp">C++</span></td>
+  <td class="description-cell">Reference and an example for the Bluetooth API for makers in Claude Cowork &amp; Claude Code Desktop<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 2k</span>
+      <span class="fork-count">forks 306</span>
+      <span class="commit-count">commits 2</span>
+    </div>
+    <span class="last-updated">pushed Apr 16, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="392" data-pushed="1778259294" data-score="87" data-name="life-sciences" data-cluster="domain-solutions">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/life-sciences" target="_blank" rel="noreferrer">life-sciences</a></div><a class="repo-slug" href="https://github.com/anthropics/life-sciences" target="_blank" rel="noreferrer">anthropics/life-sciences</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell">Repo for the Claude Code Marketplace to use with the Claude for Life Sciences Launch. This will continue to host the marketplace.json long-term, but not the actual MCP servers.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Marketplace" title="Filter by Marketplace">Marketplace</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="Life Sciences" title="Filter by Life Sciences">Life Sciences</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 392</span>
+      <span class="fork-count">forks 71</span>
+      <span class="commit-count">commits 73</span>
+    </div>
+    <span class="last-updated">pushed May 08, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<section class="repo-section" id="cluster-systems-protocols" data-section>
+  <div class="section-header">
+    <div>
+      <h2><span class="section-mark section-mark-green"></span>Systems &amp; Protocol Libraries</h2>
+      <p>Lower-level Rust and protocol libraries maintained in the Anthropic organization. Showing up to 25 repositories by stars.</p>
+    </div>
+    <span class="count-pill">2 repos</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <colgroup>
+        <col class="col-repository">
+        <col class="col-language">
+        <col class="col-description">
+        <col class="col-github">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>Repository</th>
+          <th>Language</th>
+          <th>Description</th>
+          <th>GitHub</th>
+        </tr>
+      </thead>
+      <tbody>
+<tr data-stars="736" data-pushed="1779578343" data-score="206" data-name="buffa" data-cluster="systems-protocols">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">buffa</a></div><a class="repo-slug" href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">anthropics/buffa</a></td>
+  <td><span class="tag lang-rust">Rust</span></td>
+  <td class="description-cell">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 736</span>
+      <span class="fork-count">forks 49</span>
+      <span class="commit-count">commits 97</span>
+    </div>
+    <span class="last-updated">pushed May 23, 2026</span>
+    
+  </td>
+</tr>
+<tr data-stars="386" data-pushed="1779474185" data-score="166" data-name="connect-rust" data-cluster="systems-protocols">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">connect-rust</a></div><a class="repo-slug" href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">anthropics/connect-rust</a></td>
+  <td><span class="tag lang-rust">Rust</span></td>
+  <td class="description-cell">An implementation of the ConnectRPC protocol for Rust<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 386</span>
+      <span class="fork-count">forks 36</span>
+      <span class="commit-count">commits 90</span>
+    </div>
+    <span class="last-updated">pushed May 22, 2026</span>
+    
+  </td>
+</tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+  </main>
+
+  <footer class="shell footer">
+    <p style="margin-bottom: 10px;">Useful links:
+      <a class="gh-link" href="https://www.anthropic.com/" target="_blank" rel="noreferrer" style="display: inline; margin-left: 6px;">Anthropic</a>
+      <span style="margin: 0 4px;">/</span>
+      <a class="gh-link" href="https://claude.ai/" target="_blank" rel="noreferrer" style="display: inline;">Claude</a>
+      <span style="margin: 0 4px;">/</span>
+      <a class="gh-link" href="https://docs.claude.com/" target="_blank" rel="noreferrer" style="display: inline;">Claude Docs</a>
+      <span style="margin: 0 4px;">/</span>
+      <a class="gh-link" href="https://www.anthropic.com/engineering" target="_blank" rel="noreferrer" style="display: inline;">Engineering</a>
+    </p>
+    <p style="text-align: center;">Generated from the GitHub API. Last updated: <span id="last-updated-date">2026-05-24 00:52 UTC</span></p>
+  </footer>
+
+<script>
+  const searchInput = document.getElementById('global-table-search');
+  const clearButton = document.getElementById('global-search-clear');
+  const sortScore = document.getElementById('sort-score');
+  const sortStars = document.getElementById('sort-stars');
+  const sortFresh = document.getElementById('sort-fresh');
+
+  function applySearch() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleRows = 0;
+    document.querySelectorAll('[data-section]').forEach(section => {
+      let sectionVisible = false;
+      section.querySelectorAll('tbody tr').forEach(row => {
+        const match = !query || row.textContent.toLowerCase().includes(query);
+        row.classList.toggle('hidden', !match);
+        if (match) {
+          sectionVisible = true;
+          visibleRows += 1;
+        }
+      });
+      section.classList.toggle('hidden', !sectionVisible);
+    });
+    clearButton.disabled = !query;
+    if (query && visibleRows === 0) {
+      document.querySelectorAll('[data-section], tbody tr').forEach(el => el.classList.remove('hidden'));
+    }
+  }
+
+  function sortTables(kind) {
+    const attr = kind === 'fresh' ? 'pushed' : kind === 'score' ? 'score' : 'stars';
+    document.querySelectorAll('tbody').forEach(tbody => {
+      if (kind === 'score' && !tbody.closest('.traction-section')) return;
+      const rows = Array.from(tbody.querySelectorAll('tr'));
+      rows.sort((a, b) => Number(b.dataset[attr] || 0) - Number(a.dataset[attr] || 0));
+      rows.forEach(row => tbody.appendChild(row));
+    });
+    sortScore.classList.toggle('active', kind === 'score');
+    sortStars.classList.toggle('active', kind === 'stars');
+    sortFresh.classList.toggle('active', kind === 'fresh');
+    applySearch();
+  }
+
+  searchInput.addEventListener('input', applySearch);
+  clearButton.addEventListener('click', () => {
+    searchInput.value = '';
+    applySearch();
+    searchInput.focus();
+  });
+  document.addEventListener('click', event => {
+    const keyword = event.target.closest('[data-filter-keyword]');
+    if (!keyword) return;
+    const value = keyword.dataset.filterKeyword || keyword.textContent.trim();
+    searchInput.value = searchInput.value.trim().toLowerCase() === value.trim().toLowerCase() ? '' : value;
+    applySearch();
+    searchInput.focus({ preventScroll: true });
+  });
+  sortScore.addEventListener('click', () => sortTables('score'));
+  sortStars.addEventListener('click', () => sortTables('stars'));
+  sortFresh.addEventListener('click', () => sortTables('fresh'));
+  sortTables('score');
+</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Anthropic repository atlas">
+  <rect width="64" height="64" rx="14" fill="#14110f"/>
+  <rect x="7" y="7" width="50" height="50" rx="10" fill="none" stroke="#4a372d" stroke-width="2"/>
+  <path d="M16 46 29 16h6l13 30h-7l-3-7H26l-3 7h-7Zm13-13h7l-3.5-8.8L29 33Z" fill="#d97757"/>
+  <path d="M19 50h26" stroke="#f1d7c7" stroke-width="3" stroke-linecap="round"/>
+</svg>
