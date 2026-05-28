@@ -539,6 +539,141 @@
           "stars": 141528
         }
       }
+    },
+    {
+      "date": "2026-05-28",
+      "repos": {
+        "anthropics/anthropic-cli": {
+          "forks": 56,
+          "pushed_at": "2026-05-27T01:27:12Z",
+          "stars": 408
+        },
+        "anthropics/anthropic-sdk-csharp": {
+          "forks": 86,
+          "pushed_at": "2026-05-27T23:32:31Z",
+          "stars": 279
+        },
+        "anthropics/anthropic-sdk-go": {
+          "forks": 176,
+          "pushed_at": "2026-05-27T01:26:48Z",
+          "stars": 1063
+        },
+        "anthropics/anthropic-sdk-java": {
+          "forks": 83,
+          "pushed_at": "2026-05-27T21:32:43Z",
+          "stars": 319
+        },
+        "anthropics/anthropic-sdk-python": {
+          "forks": 696,
+          "pushed_at": "2026-05-27T21:02:23Z",
+          "stars": 3543
+        },
+        "anthropics/anthropic-sdk-ruby": {
+          "forks": 59,
+          "pushed_at": "2026-05-27T01:26:46Z",
+          "stars": 342
+        },
+        "anthropics/anthropic-sdk-typescript": {
+          "forks": 343,
+          "pushed_at": "2026-05-27T01:26:32Z",
+          "stars": 1976
+        },
+        "anthropics/buffa": {
+          "forks": 54,
+          "pushed_at": "2026-05-28T06:05:26Z",
+          "stars": 745
+        },
+        "anthropics/claude-agent-sdk-demos": {
+          "forks": 357,
+          "pushed_at": "2026-03-13T17:15:43Z",
+          "stars": 2429
+        },
+        "anthropics/claude-agent-sdk-python": {
+          "forks": 1044,
+          "pushed_at": "2026-05-28T00:52:57Z",
+          "stars": 7084
+        },
+        "anthropics/claude-agent-sdk-typescript": {
+          "forks": 175,
+          "pushed_at": "2026-05-28T00:51:56Z",
+          "stars": 1467
+        },
+        "anthropics/claude-code": {
+          "forks": 20840,
+          "pushed_at": "2026-05-28T00:52:08Z",
+          "stars": 127140
+        },
+        "anthropics/claude-code-action": {
+          "forks": 1871,
+          "pushed_at": "2026-05-28T00:53:00Z",
+          "stars": 7771
+        },
+        "anthropics/claude-code-base-action": {
+          "forks": 607,
+          "pushed_at": "2026-05-28T00:53:10Z",
+          "stars": 848
+        },
+        "anthropics/claude-cookbooks": {
+          "forks": 5103,
+          "pushed_at": "2026-05-28T00:24:16Z",
+          "stars": 44487
+        },
+        "anthropics/claude-desktop-buddy": {
+          "forks": 325,
+          "pushed_at": "2026-04-16T23:25:07Z",
+          "stars": 2042
+        },
+        "anthropics/claude-for-legal": {
+          "forks": 1316,
+          "pushed_at": "2026-05-24T07:06:57Z",
+          "stars": 7750
+        },
+        "anthropics/claude-plugins-official": {
+          "forks": 3015,
+          "pushed_at": "2026-05-28T02:54:07Z",
+          "stars": 28287
+        },
+        "anthropics/claude-quickstarts": {
+          "forks": 2885,
+          "pushed_at": "2026-05-13T23:11:25Z",
+          "stars": 16803
+        },
+        "anthropics/connect-rust": {
+          "forks": 38,
+          "pushed_at": "2026-05-27T22:42:47Z",
+          "stars": 396
+        },
+        "anthropics/cwc-long-running-agents": {
+          "forks": 41,
+          "pushed_at": "2026-05-13T00:54:43Z",
+          "stars": 377
+        },
+        "anthropics/cwc-workshops": {
+          "forks": 152,
+          "pushed_at": "2026-05-18T15:10:42Z",
+          "stars": 593
+        },
+        "anthropics/financial-services": {
+          "forks": 3971,
+          "pushed_at": "2026-05-26T16:14:38Z",
+          "stars": 28342
+        },
+        "anthropics/knowledge-work-plugins": {
+          "forks": 2036,
+          "pushed_at": "2026-05-28T03:10:20Z",
+          "stars": 17474
+        },
+        "anthropics/life-sciences": {
+          "forks": 73,
+          "pushed_at": "2026-05-08T16:54:54Z",
+          "stars": 396
+        },
+        "anthropics/skills": {
+          "forks": 16802,
+          "pushed_at": "2026-05-19T14:11:10Z",
+          "stars": 142177
+        }
+      }
     }
   ]
 }
