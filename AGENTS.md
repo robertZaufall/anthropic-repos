@@ -26,8 +26,9 @@ overwritten by the next scheduled refresh.
 ## Repo layout
 
 - `index.html`: generated static page with embedded CSS and JavaScript.
-- `update_stats.py`: fetches GitHub metadata, assigns clusters, ranks tables,
-  rewrites `index.html`, and updates `stats_history.json`.
+- `update_stats.py`: fetches GitHub metadata and README content, assigns
+  clusters, ranks tables, rewrites `index.html`, and updates
+  `stats_history.json`.
 - `stats_history.json`: lightweight history used for 30-day star and fork
   deltas. Keep it committed so scheduled runs can compute traction.
 - `favicon.svg`: static favicon.
@@ -69,9 +70,10 @@ python3 update_stats.py
 ```
 
 That command queries GitHub for current Anthropic repositories matching the
-catalog rules, fetches metadata and commit counts, assigns each repo to a rough
-purpose cluster, rebuilds the fresh-traction table, rebuilds the cluster
-tables, rewrites `index.html`, and updates `stats_history.json`.
+catalog rules, fetches metadata, commit counts, and README content, assigns
+each repo to a rough purpose cluster, rebuilds the fresh-traction table,
+rebuilds the cluster tables, rewrites `index.html`, and updates
+`stats_history.json`.
 
 Commit both generated files after a rebuild:
 

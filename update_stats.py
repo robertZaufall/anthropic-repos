@@ -17,6 +17,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import base64
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from html import escape
@@ -28,6 +29,7 @@ import re
 import subprocess
 import sys
 import time
+import unicodedata
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
@@ -41,6 +43,21 @@ TRACTION_DAYS = 30
 HISTORY_DAYS = 140
 GITHUB_API = "https://api.github.com"
 USER_AGENT = "anthropic-repos-catalog"
+CONTENT_SIGNAL_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("Install", ("install", "installation", "setup")),
+    ("Quickstart", ("quickstart", "quick start", "getting started")),
+    ("Examples", ("example", "examples", "demo", "demos", "sample", "samples")),
+    ("API", ("api reference", "api", "client")),
+    ("CLI", ("cli", "command line", "terminal")),
+    ("GitHub Action", ("github action", "actions", "workflow")),
+    ("MCP", ("mcp", "model context protocol")),
+    ("Plugins", ("plugin", "plugins", "marketplace")),
+    ("Skills", ("skill", "skills")),
+    ("SDK", ("sdk", "client library")),
+    ("Docs", ("documentation", "docs")),
+    ("Tutorial", ("tutorial", "workshop", "lesson")),
+    ("Tests", ("test", "tests", "testing")),
+)
 AUTO_KEYWORD_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Claude", ("claude",)),
     ("Claude Code", ("claude code", "claude-code")),
@@ -448,6 +465,9 @@ def normalize_repo(item: dict[str, Any]) -> dict[str, Any]:
         "commits": None,
         "commits_30d": None,
         "commits_window": None,
+        "readme_summary": "",
+        "readme_headings": [],
+        "content_signals": [],
     }
 
 
@@ -474,6 +494,149 @@ def commit_count(client: GitHubClient, full_name: str, since: datetime | None = 
     return link_last_page(headers.get("link"), len(data))
 
 
+def enrich_repository_content(client: GitHubClient, repos: list[dict[str, Any]]) -> None:
+    for index, repo in enumerate(repos, start=1):
+        full_name = repo["full_name"]
+        print(f"[{index:03d}/{len(repos):03d}] content {full_name}")
+        markdown = fetch_readme(client, full_name)
+        summary, headings, signals = summarize_readme(markdown, repo["description"])
+        repo["readme_summary"] = summary
+        repo["readme_headings"] = headings
+        repo["content_signals"] = signals
+
+
+def fetch_readme(client: GitHubClient, full_name: str) -> str:
+    try:
+        data, _ = client.request(f"/repos/{full_name}/readme")
+    except RuntimeError as exc:
+        print(f"  warning: {exc}", file=sys.stderr)
+        return ""
+    content = data.get("content") if isinstance(data, dict) else None
+    if not isinstance(content, str):
+        return ""
+    if data.get("encoding") == "base64":
+        try:
+            return base64.b64decode(content, validate=False).decode("utf-8", errors="replace")
+        except (ValueError, TypeError):
+            return ""
+    return content
+
+
+def summarize_readme(markdown: str, fallback: str) -> tuple[str, list[str], list[str]]:
+    if not markdown:
+        return clean_text(fallback)[:260], [], []
+    markdown = remove_code_fences(markdown[:90_000])
+    headings = extract_headings(markdown)
+    paragraphs = extract_paragraphs(markdown)
+    summary = next((paragraph for paragraph in paragraphs if len(paragraph) >= 70), "")
+    if not summary and paragraphs:
+        summary = paragraphs[0]
+    if not summary:
+        summary = clean_text(fallback)
+    signals = content_signals(markdown)
+    return truncate_text(summary, 280), headings[:5], signals[:8]
+
+
+def remove_code_fences(markdown: str) -> str:
+    return re.sub(r"```.*?```", " ", markdown, flags=re.DOTALL)
+
+
+def extract_headings(markdown: str) -> list[str]:
+    headings: list[str] = []
+    skipped = {"table of contents", "contents", "license", "contributing"}
+    for line in markdown.splitlines():
+        match = re.match(r"^\s{0,3}#{1,3}\s+(.+?)\s*$", line)
+        if not match:
+            continue
+        heading = clean_text(match.group(1))
+        if not heading or heading.lower() in skipped:
+            continue
+        if len(heading) > 56:
+            heading = truncate_text(heading, 56)
+        if heading not in headings:
+            headings.append(heading)
+    return headings
+
+
+def extract_paragraphs(markdown: str) -> list[str]:
+    paragraphs: list[str] = []
+    current: list[str] = []
+
+    def flush() -> None:
+        if not current:
+            return
+        text = clean_text(" ".join(current))
+        current.clear()
+        if is_useful_paragraph(text):
+            paragraphs.append(text)
+
+    for raw_line in markdown.splitlines():
+        line = raw_line.strip()
+        if not line:
+            flush()
+            continue
+        if line.startswith(("#", "|", ">", "<", "!", "[!", "---")):
+            flush()
+            continue
+        if re.match(r"^[-*+]\s+", line) or re.match(r"^\d+\.\s+", line):
+            flush()
+            continue
+        current.append(line)
+    flush()
+    return paragraphs
+
+
+def clean_text(value: str) -> str:
+    value = re.sub(r"<!--.*?-->", " ", value, flags=re.DOTALL)
+    value = re.sub(r"<[^>]+>", " ", value)
+    value = re.sub(r"!\[[^\]]*\]\([^)]+\)", " ", value)
+    value = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", value)
+    value = re.sub(r"`([^`]+)`", r"\1", value)
+    value = re.sub(r"[*_~<>#|]", " ", value)
+    value = strip_icon_glyphs(value)
+    value = re.sub(r"\s+", " ", value)
+    return value.strip(" -:\t\r\n")
+
+
+def strip_icon_glyphs(value: str) -> str:
+    return "".join(
+        ch
+        for ch in value
+        if unicodedata.category(ch) not in {"Cs", "So"} and ch != "\ufe0f"
+    )
+
+
+def is_useful_paragraph(text: str) -> bool:
+    if len(text) < 35:
+        return False
+    lowered = text.lower()
+    noisy = (
+        "badge",
+        "build status",
+        "copyright",
+        "all rights reserved",
+        "http://",
+        "https://",
+    )
+    return not any(term in lowered for term in noisy)
+
+
+def truncate_text(value: str, limit: int) -> str:
+    if len(value) <= limit:
+        return value
+    clipped = value[: limit - 3].rsplit(" ", 1)[0]
+    return f"{clipped}..."
+
+
+def content_signals(markdown: str) -> list[str]:
+    haystack = clean_text(markdown).lower()
+    signals = []
+    for label, aliases in CONTENT_SIGNAL_TERMS:
+        if any(term_matches(haystack, alias) for alias in aliases):
+            signals.append(label)
+    return signals
+
+
 def cluster_repo(repo: dict[str, Any]) -> Cluster:
     haystack = " ".join(
         [
@@ -481,6 +644,9 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             repo["description"],
             repo["language"],
             " ".join(repo.get("topics") or []),
+            repo.get("readme_summary") or "",
+            " ".join(repo.get("readme_headings") or []),
+            " ".join(repo.get("content_signals") or []),
         ]
     ).lower()
     clusters_by_key = {cluster.key: cluster for cluster in CLUSTERS}
@@ -658,7 +824,7 @@ def repo_row(repo: dict[str, Any], include_cluster: bool = False, include_tracti
     cells = []
     cells.append(f"<td>{name_cell}</td>")
     cells.append(f'<td><span class="tag {language_class(repo["language"])}">{language}</span></td>')
-    cells.append(description_cell(desc, topic_html))
+    cells.append(description_cell(desc, topic_html, repo))
     if include_cluster:
         cells.append(cluster_cell(repo, linked=include_traction))
     cells.append(github_cell(repo, include_activity=include_traction))
@@ -670,8 +836,27 @@ def repo_row(repo: dict[str, Any], include_cluster: bool = False, include_tracti
     )
 
 
-def description_cell(desc: str, topic_html: str) -> str:
-    return f'<td class="description-cell">{desc}<div class="topic-row">{topic_html}</div></td>'
+def description_cell(desc: str, topic_html: str, repo: dict[str, Any]) -> str:
+    return f'<td class="description-cell"><p class="repo-desc">{desc}</p>{content_block_from_repo(repo)}<div class="topic-row">{topic_html}</div></td>'
+
+
+def content_block_from_repo(repo: dict[str, Any]) -> str:
+    summary = escape(repo.get("readme_summary") or "")
+    headings = [escape(heading) for heading in repo.get("readme_headings") or []]
+    signals = [escape(signal) for signal in repo.get("content_signals") or []]
+    if not summary and not headings and not signals:
+        return ""
+    signal_html = "".join(f'<span class="content-chip">{signal}</span>' for signal in signals)
+    heading_html = "".join(f'<span class="content-heading">{heading}</span>' for heading in headings)
+    signals_block = f'<div class="content-signals">{signal_html}</div>' if signal_html else ""
+    headings_block = f'<div class="content-headings">{heading_html}</div>' if heading_html else ""
+    summary_block = f'<p class="readme-summary">{summary}</p>' if summary else ""
+    return (
+        '<div class="content-block">'
+        '<div class="content-label">README content</div>'
+        f"{summary_block}{signals_block}{headings_block}"
+        "</div>"
+    )
 
 
 def cluster_cell(repo: dict[str, Any], linked: bool = False) -> str:
@@ -699,8 +884,7 @@ def github_cell(repo: dict[str, Any], include_activity: bool = False) -> str:
       <span class="fork-count">forks {fmt_number(repo["forks"])}</span>
       <span class="commit-count">commits {fmt_number(repo.get("commits"))}</span>
     </div>
-    <span class="last-updated">pushed {fmt_date(repo["pushed_at"])}</span>
-    {activity}
+    <span class="last-updated">pushed {fmt_date(repo["pushed_at"])}</span>{activity}
   </td>"""
 
 
@@ -1190,6 +1374,51 @@ def render_html(
     color: var(--text);
     max-width: 54rem;
   }}
+  .repo-desc {{
+    margin: 0;
+  }}
+  .content-block {{
+    margin-top: 10px;
+    padding: 10px 11px;
+    border: 1px solid rgba(217, 119, 87, 0.24);
+    border-radius: 8px;
+    background: rgba(16, 13, 11, 0.36);
+  }}
+  .content-label {{
+    margin-bottom: 5px;
+    color: #ffd8c5;
+    font: 800 10px 'JetBrains Mono', monospace;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }}
+  .readme-summary {{
+    margin: 0;
+    color: #dfd3c7;
+    font-size: 12px;
+    line-height: 1.55;
+  }}
+  .content-signals,
+  .content-headings {{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 7px;
+  }}
+  .content-chip,
+  .content-heading {{
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font: 700 10px 'JetBrains Mono', monospace;
+  }}
+  .content-chip {{
+    background: rgba(124, 207, 195, 0.11);
+    color: var(--teal);
+  }}
+  .content-heading {{
+    background: rgba(244, 239, 231, 0.08);
+    color: var(--text-muted);
+  }}
   .github-cell {{ min-width: 210px; }}
   .gh-stats {{
     display: flex;
@@ -1392,6 +1621,7 @@ def main() -> int:
     else:
         for repo in repos:
             repo["commits_window"] = None
+    enrich_repository_content(client, repos)
 
     history_path = Path(args.history)
     history = read_history(history_path)

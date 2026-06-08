@@ -376,6 +376,51 @@
     color: var(--text);
     max-width: 54rem;
   }
+  .repo-desc {
+    margin: 0;
+  }
+  .content-block {
+    margin-top: 10px;
+    padding: 10px 11px;
+    border: 1px solid rgba(217, 119, 87, 0.24);
+    border-radius: 8px;
+    background: rgba(16, 13, 11, 0.36);
+  }
+  .content-label {
+    margin-bottom: 5px;
+    color: #ffd8c5;
+    font: 800 10px 'JetBrains Mono', monospace;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+  }
+  .readme-summary {
+    margin: 0;
+    color: #dfd3c7;
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .content-signals,
+  .content-headings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 7px;
+  }
+  .content-chip,
+  .content-heading {
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font: 700 10px 'JetBrains Mono', monospace;
+  }
+  .content-chip {
+    background: rgba(124, 207, 195, 0.11);
+    color: var(--teal);
+  }
+  .content-heading {
+    background: rgba(244, 239, 231, 0.08);
+    color: var(--text-muted);
+  }
   .github-cell { min-width: 210px; }
   .gh-stats {
     display: flex;
@@ -456,9 +501,9 @@
       Included repositories have more than 200 stars and at least one commit within the last three months, since 2026-03-08.
     </p>
     <div class="mt-5 flex flex-wrap gap-2.5" aria-label="Catalog summary">
-      <div class="metric-card"><strong>28</strong><span>qualified repos</span></div>
-      <div class="metric-card"><strong>467k</strong><span>combined stars</span></div>
-      <div class="metric-card"><strong>1k</strong><span>commits in 30d</span></div>
+      <div class="metric-card"><strong>29</strong><span>qualified repos</span></div>
+      <div class="metric-card"><strong>468k</strong><span>combined stars</span></div>
+      <div class="metric-card"><strong>1.1k</strong><span>commits in 30d</span></div>
       <div class="metric-card"><strong>2.7k</strong><span>commits since 2026-03-08</span></div>
       <div class="metric-card"><strong>6</strong><span>purpose clusters</span></div>
     </div>
@@ -512,76 +557,73 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="147754" data-pushed="1780863695" data-score="1031" data-name="skills" data-cluster="skills-plugins">
+<tr data-stars="148030" data-pushed="1780863695" data-score="1026" data-name="skills" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">skills</a></div><a class="repo-slug" href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">anthropics/skills</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Public repository for Agent Skills<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Public repository for Agent Skills</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that&#x27;s creating documents with your company&#x27;s brand...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">Skills</span><span class="content-heading">About This Repository</span><span class="content-heading">Disclaimer</span><span class="content-heading">Skill Sets</span><span class="content-heading">Try in Claude Code, Claude.ai, and the API</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 148k</span>
-      <span class="fork-count">forks 17.4k</span>
+      <span class="fork-count">forks 17.5k</span>
       <span class="commit-count">commits 38</span>
     </div>
     <span class="last-updated">pushed Jun 07, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 1031">
+    <div class="activity-block" aria-label="Recent activity score 1026">
       <div class="activity-bar"><span style="width: 100%"></span></div>
       <div class="activity-meta">
         <span>4 commits / 30d</span>
-        <span>score 1031</span>
+        <span>score 1026</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="130976" data-pushed="1780789313" data-score="1007" data-name="claude-code" data-cluster="claude-code-agents">
+<tr data-stars="131111" data-pushed="1780955838" data-score="1014" data-name="claude-code" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">claude-code</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
-  <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
+  <td class="description-cell"><p class="repo-desc">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows -- all through natural language commands. Use it in your terminal, IDE, or...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">CLI</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Code</span><span class="content-heading">Get started</span><span class="content-heading">Plugins</span><span class="content-heading">Reporting Bugs</span><span class="content-heading">Connect on Discord</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 131k</span>
       <span class="fork-count">forks 21.2k</span>
-      <span class="commit-count">commits 657</span>
+      <span class="commit-count">commits 658</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 1007">
-      <div class="activity-bar"><span style="width: 98%"></span></div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 1014">
+      <div class="activity-bar"><span style="width: 99%"></span></div>
       <div class="activity-meta">
-        <span>37 commits / 30d</span>
-        <span>score 1007</span>
+        <span>38 commits / 30d</span>
+        <span>score 1014</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="29608" data-pushed="1780880539" data-score="875" data-name="claude-plugins-official" data-cluster="skills-plugins">
+<tr data-stars="29658" data-pushed="1780956231" data-score="876" data-name="claude-plugins-official" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">claude-plugins-official</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Official, Anthropic-managed directory of high quality Claude Code Plugins.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Official, Anthropic-managed directory of high quality Claude Code Plugins.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Plugins can be installed directly from this marketplace via Claude Code&#x27;s plugin system.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Code Plugins Directory</span><span class="content-heading">Structure</span><span class="content-heading">Installation</span><span class="content-heading">Internal Plugins</span><span class="content-heading">External Plugins</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 29.6k</span>
+      <span class="star-count">stars 29.7k</span>
       <span class="fork-count">forks 3.2k</span>
-      <span class="commit-count">commits 717</span>
+      <span class="commit-count">commits 748</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 875">
+    <div class="activity-block" aria-label="Recent activity score 876">
       <div class="activity-bar"><span style="width: 85%"></span></div>
       <div class="activity-meta">
-        <span>354 commits / 30d</span>
-        <span>score 875</span>
+        <span>384 commits / 30d</span>
+        <span>score 876</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="45111" data-pushed="1780104712" data-score="600" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
+<tr data-stars="45139" data-pushed="1780104712" data-score="600" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">claude-cookbooks</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">anthropics/claude-cookbooks</a></td>
   <td><span class="tag lang-jupyter">Jupyter Notebook</span></td>
-  <td class="description-cell">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude Cookbooks provide code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own projects.</p><div class="content-signals"><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Cookbooks</span><span class="content-heading">Prerequisites</span><span class="content-heading">Explore Further</span><span class="content-heading">Table of recipes</span><span class="content-heading">Capabilities</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -590,9 +632,8 @@
       <span class="commit-count">commits 581</span>
     </div>
     <span class="last-updated">pushed May 30, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 600">
-      <div class="activity-bar"><span style="width: 58%"></span></div>
+      <div class="activity-bar"><span style="width: 59%"></span></div>
       <div class="activity-meta">
         <span>21 commits / 30d</span>
         <span>score 600</span>
@@ -600,54 +641,52 @@
     </div>
   </td>
 </tr>
-<tr data-stars="30447" data-pushed="1780692789" data-score="533" data-name="financial-services" data-cluster="domain-solutions">
+<tr data-stars="30525" data-pushed="1780692789" data-score="528" data-name="financial-services" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">financial-services</a></div><a class="repo-slug" href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Reference agents, skills, and data connectors for the financial-services workflows we see most — investment banking, equity research, private equity, and wealth management.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span></div><div class="content-headings"><span class="content-heading">Claude for Financial Services</span><span class="content-heading">Agents</span><span class="content-heading">Repository Layout</span><span class="content-heading">Getting Started</span><span class="content-heading">Cowork</span></div></div><div class="topic-row"></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 30.4k</span>
+      <span class="star-count">stars 30.5k</span>
       <span class="fork-count">forks 4.3k</span>
       <span class="commit-count">commits 61</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 533">
-      <div class="activity-bar"><span style="width: 52%"></span></div>
+    <div class="activity-block" aria-label="Recent activity score 528">
+      <div class="activity-bar"><span style="width: 51%"></span></div>
       <div class="activity-meta">
-        <span>10 commits / 30d</span>
-        <span>score 533</span>
+        <span>9 commits / 30d</span>
+        <span>score 528</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="19611" data-pushed="1780855485" data-score="484" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
+<tr data-stars="19722" data-pushed="1780944049" data-score="487" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">knowledge-work-plugins</a></div><a class="repo-slug" href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Plugins that turn Claude into a specialist for your role, team, and company. Built for Claude Cowork, also compatible with Claude Code.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Knowledge Work Plugins</span><span class="content-heading">Why Plugins</span><span class="content-heading">Plugin Marketplace</span><span class="content-heading">Getting Started</span><span class="content-heading">Cowork</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 19.6k</span>
-      <span class="fork-count">forks 2.3k</span>
-      <span class="commit-count">commits 98</span>
+      <span class="star-count">stars 19.7k</span>
+      <span class="fork-count">forks 2.4k</span>
+      <span class="commit-count">commits 100</span>
     </div>
-    <span class="last-updated">pushed Jun 07, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 484">
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 487">
       <div class="activity-bar"><span style="width: 47%"></span></div>
       <div class="activity-meta">
-        <span>36 commits / 30d</span>
-        <span>score 484</span>
+        <span>38 commits / 30d</span>
+        <span>score 487</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="16954" data-pushed="1780002179" data-score="383" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
+<tr data-stars="16957" data-pushed="1780002179" data-score="379" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">claude-quickstarts</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">anthropics/claude-quickstarts</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude Quickstarts is a collection of projects designed to help developers quickly get started with building applications using the Claude API. Each quickstart provides a foundation that you can easily build upon and customize for your specific needs.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Quickstarts</span><span class="content-heading">Getting Started</span><span class="content-heading">Available Quickstarts</span><span class="content-heading">Customer Support Agent</span><span class="content-heading">Financial Data Analyst</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -656,64 +695,61 @@
       <span class="commit-count">commits 85</span>
     </div>
     <span class="last-updated">pushed May 28, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 383">
+    <div class="activity-block" aria-label="Recent activity score 379">
       <div class="activity-bar"><span style="width: 37%"></span></div>
       <div class="activity-meta">
         <span>2 commits / 30d</span>
-        <span>score 383</span>
+        <span>score 379</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="7224" data-pushed="1780789361" data-score="371" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
+<tr data-stars="7226" data-pushed="1780956615" data-score="378" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">claude-agent-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-python</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Python SDK for Claude Agent. See the Claude Agent SDK documentation for more information.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">SDK</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK for Python</span><span class="content-heading">Installation</span><span class="content-heading">Quick Start</span><span class="content-heading">Basic Usage: query()</span><span class="content-heading">Using Tools</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 7.2k</span>
       <span class="fork-count">forks 1.1k</span>
-      <span class="commit-count">commits 616</span>
+      <span class="commit-count">commits 619</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 371">
-      <div class="activity-bar"><span style="width: 36%"></span></div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 378">
+      <div class="activity-bar"><span style="width: 37%"></span></div>
       <div class="activity-meta">
-        <span>64 commits / 30d</span>
-        <span>score 371</span>
+        <span>67 commits / 30d</span>
+        <span>score 378</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="7905" data-pushed="1780898921" data-score="366" data-name="claude-code-action" data-cluster="claude-code-agents">
+<tr data-stars="7912" data-pushed="1780955942" data-score="367" data-name="claude-code-action" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">claude-code-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">anthropics/claude-code-action</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A general-purpose Claude Code action for GitHub PRs and issues that can answer questions and implement code changes. This action intelligently detects when to activate based on your workflow context—whether responding to @claude mentions, issue assignments, or executing...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">SDK</span></div><div class="content-headings"><span class="content-heading">Claude Code Action</span><span class="content-heading">Features</span><span class="content-heading">Upgrading from v0.x?</span><span class="content-heading">Quickstart</span><span class="content-heading">Solutions &amp; Use Cases</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 7.9k</span>
       <span class="fork-count">forks 1.9k</span>
-      <span class="commit-count">commits 624</span>
+      <span class="commit-count">commits 625</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 366">
+    <div class="activity-block" aria-label="Recent activity score 367">
       <div class="activity-bar"><span style="width: 36%"></span></div>
       <div class="activity-meta">
-        <span>43 commits / 30d</span>
-        <span>score 366</span>
+        <span>44 commits / 30d</span>
+        <span>score 367</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="8128" data-pushed="1780587964" data-score="346" data-name="claude-for-legal" data-cluster="domain-solutions">
+<tr data-stars="8143" data-pushed="1780587964" data-score="342" data-name="claude-for-legal" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">claude-for-legal</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">anthropics/claude-for-legal</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">A suite of plugins for legal workflows<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A suite of plugins for legal workflows</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Reference agents, skills, and data connectors for the legal workflows we see most — in-house commercial, privacy, product, corporate, employment, litigation, regulatory, AI governance, IP, and the learning side of the practice (law school clinics and students).</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span></div><div class="content-headings"><span class="content-heading">Claude for Legal</span><span class="content-heading">Getting started in Cowork</span><span class="content-heading">Agents</span><span class="content-heading">Repository Layout</span><span class="content-heading">Getting Started</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -722,64 +758,61 @@
       <span class="commit-count">commits 33</span>
     </div>
     <span class="last-updated">pushed Jun 04, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 346">
-      <div class="activity-bar"><span style="width: 34%"></span></div>
+    <div class="activity-block" aria-label="Recent activity score 342">
+      <div class="activity-bar"><span style="width: 33%"></span></div>
       <div class="activity-meta">
         <span>33 commits / 30d</span>
-        <span>score 346</span>
+        <span>score 342</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="3591" data-pushed="1780852737" data-score="288" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
+<tr data-stars="3594" data-pushed="1780852737" data-score="285" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropic-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-python</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Python provides access to the Claude API from Python applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Python</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 3.6k</span>
-      <span class="fork-count">forks 718</span>
+      <span class="fork-count">forks 720</span>
       <span class="commit-count">commits 1.1k</span>
     </div>
     <span class="last-updated">pushed Jun 07, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 288">
+    <div class="activity-block" aria-label="Recent activity score 285">
       <div class="activity-bar"><span style="width: 28%"></span></div>
       <div class="activity-meta">
         <span>43 commits / 30d</span>
-        <span>score 288</span>
+        <span>score 285</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="5190" data-pushed="1780433613" data-score="261" data-name="defending-code-reference-harness" data-cluster="skills-plugins">
+<tr data-stars="5338" data-pushed="1780433613" data-score="260" data-name="defending-code-reference-harness" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/defending-code-reference-harness" target="_blank" rel="noreferrer">defending-code-reference-harness</a></div><a class="repo-slug" href="https://github.com/anthropics/defending-code-reference-harness" target="_blank" rel="noreferrer">anthropics/defending-code-reference-harness</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Skills for threat modeling, scanning, triage, patching, plus an autonomous scanning harness you can /customize<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="security" title="Filter by security">security</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Skills for threat modeling, scanning, triage, patching, plus an autonomous scanning harness you can /customize</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A reference implementation for autonomous vulnerability discovery and remediation with Claude, based on our learnings from partnering with security teams at several organizations since launching Claude Mythos Preview. For a write up of these learnings along with best...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">Skills</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Defending Code Reference Harness</span><span class="content-heading">Getting Started</span><span class="content-heading">Further Reading</span><span class="content-heading">Ramp Up</span><span class="content-heading">Step 1 (Day 1): Build a threat model and run your...</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="security" title="Filter by security">security</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 5.2k</span>
-      <span class="fork-count">forks 345</span>
+      <span class="star-count">stars 5.3k</span>
+      <span class="fork-count">forks 358</span>
       <span class="commit-count">commits 6</span>
     </div>
     <span class="last-updated">pushed Jun 02, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 261">
+    <div class="activity-block" aria-label="Recent activity score 260">
       <div class="activity-bar"><span style="width: 25%"></span></div>
       <div class="activity-meta">
         <span>6 commits / 30d</span>
-        <span>score 261</span>
+        <span>score 260</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="1991" data-pushed="1780785904" data-score="245" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
+<tr data-stars="1993" data-pushed="1780785904" data-score="245" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropic-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-typescript</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for TypeScript provides access to the Claude API from server-side TypeScript or JavaScript applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for TypeScript</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -788,7 +821,6 @@
       <span class="commit-count">commits 1.1k</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 245">
       <div class="activity-bar"><span style="width: 24%"></span></div>
       <div class="activity-meta">
@@ -801,7 +833,7 @@
 <tr data-stars="1090" data-pushed="1780785870" data-score="214" data-name="anthropic-sdk-go" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropic-sdk-go</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-go</a></td>
   <td><span class="tag lang-go">Go</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs via Go<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs via Go</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Go provides access to the Claude API from Go applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Go</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -810,7 +842,6 @@
       <span class="commit-count">commits 580</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 214">
       <div class="activity-bar"><span style="width: 21%"></span></div>
       <div class="activity-meta">
@@ -820,68 +851,86 @@
     </div>
   </td>
 </tr>
-<tr data-stars="1505" data-pushed="1780789324" data-score="209" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
+<tr data-stars="1505" data-pushed="1780955835" data-score="213" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">claude-agent-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-typescript</a></td>
   <td><span class="tag lang-shell">Shell</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude Agent SDK enables you to programmatically build AI agents with Claude Code&#x27;s capabilities. Create autonomous agents that can understand codebases, edit files, run commands, and execute complex workflows.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK</span><span class="content-heading">Get started</span><span class="content-heading">Migrating from the Claude Code SDK</span><span class="content-heading">Reporting Bugs</span><span class="content-heading">Connect on Discord</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 1.5k</span>
       <span class="fork-count">forks 180</span>
-      <span class="commit-count">commits 217</span>
+      <span class="commit-count">commits 218</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 209">
-      <div class="activity-bar"><span style="width: 20%"></span></div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 213">
+      <div class="activity-bar"><span style="width: 21%"></span></div>
       <div class="activity-meta">
-        <span>29 commits / 30d</span>
-        <span>score 209</span>
+        <span>30 commits / 30d</span>
+        <span>score 213</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="865" data-pushed="1780789379" data-score="190" data-name="claude-code-base-action" data-cluster="claude-code-agents">
+<tr data-stars="866" data-pushed="1780955890" data-score="194" data-name="claude-code-base-action" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">claude-code-base-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">anthropics/claude-code-base-action</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository is an automated mirror of the base-action directory from anthropics/claude-code-action.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">This is a Mirror Repository</span><span class="content-heading">Claude Code Base Action</span><span class="content-heading">Trust model</span><span class="content-heading">Usage</span><span class="content-heading">Workload Identity Federation</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 865</span>
+      <span class="star-count">stars 866</span>
       <span class="fork-count">forks 605</span>
-      <span class="commit-count">commits 388</span>
+      <span class="commit-count">commits 389</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 190">
-      <div class="activity-bar"><span style="width: 18%"></span></div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 194">
+      <div class="activity-bar"><span style="width: 19%"></span></div>
       <div class="activity-meta">
-        <span>32 commits / 30d</span>
-        <span>score 190</span>
+        <span>33 commits / 30d</span>
+        <span>score 194</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="760" data-pushed="1780667827" data-score="187" data-name="buffa" data-cluster="systems-protocols">
+<tr data-stars="761" data-pushed="1780667827" data-score="184" data-name="buffa" data-cluster="systems-protocols">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">buffa</a></div><a class="repo-slug" href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">anthropics/buffa</a></td>
   <td><span class="tag lang-rust">Rust</span></td>
-  <td class="description-cell">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A pure-Rust Protocol Buffers implementation with first-class protobuf editions support. Written by Claude and friends</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">buffa</span><span class="content-heading">Why buffa?</span><span class="content-heading">Features</span><span class="content-heading">Wire formats</span><span class="content-heading">Unsupported features</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 760</span>
+      <span class="star-count">stars 761</span>
       <span class="fork-count">forks 58</span>
       <span class="commit-count">commits 109</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 187">
+    <div class="activity-block" aria-label="Recent activity score 184">
       <div class="activity-bar"><span style="width: 18%"></span></div>
       <div class="activity-meta">
         <span>46 commits / 30d</span>
-        <span>score 187</span>
+        <span>score 184</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="879" data-pushed="1780906708" data-score="168" data-name="cwc-workshops" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Workshop materials. Not maintained and not accepting contributions.</p><div class="content-signals"><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Skills</span><span class="content-chip">Tutorial</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">cwc-workshops</span><span class="content-heading">Workshops</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-skills-plugins">Skills, Plugins &amp; Marketplaces</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 879</span>
+      <span class="fork-count">forks 238</span>
+      <span class="commit-count">commits 27</span>
+    </div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 168">
+      <div class="activity-bar"><span style="width: 16%"></span></div>
+      <div class="activity-meta">
+        <span>10 commits / 30d</span>
+        <span>score 168</span>
       </div>
     </div>
   </td>
@@ -889,7 +938,7 @@
 <tr data-stars="326" data-pushed="1780880897" data-score="168" data-name="anthropic-sdk-java" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropic-sdk-java</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-java</a></td>
   <td><span class="tag lang-kotlin">Kotlin</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Java provides access to the Claude API from Java applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Java</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Gradle</span><span class="content-heading">Maven</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -898,7 +947,6 @@
       <span class="commit-count">commits 646</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 168">
       <div class="activity-bar"><span style="width: 16%"></span></div>
       <div class="activity-meta">
@@ -908,63 +956,18 @@
     </div>
   </td>
 </tr>
-<tr data-stars="861" data-pushed="1780611655" data-score="157" data-name="cwc-workshops" data-cluster="learning-quickstarts">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
-  <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
-  <td><a class="cluster-pill cluster-link" href="#cluster-learning-quickstarts">Cookbooks, Quickstarts &amp; Learning</a></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 861</span>
-      <span class="fork-count">forks 237</span>
-      <span class="commit-count">commits 26</span>
-    </div>
-    <span class="last-updated">pushed Jun 04, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 157">
-      <div class="activity-bar"><span style="width: 15%"></span></div>
-      <div class="activity-meta">
-        <span>9 commits / 30d</span>
-        <span>score 157</span>
-      </div>
-    </div>
-  </td>
-</tr>
-<tr data-stars="345" data-pushed="1780777031" data-score="154" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropic-sdk-ruby</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-ruby</a></td>
-  <td><span class="tag lang-ruby">Ruby</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
-  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 345</span>
-      <span class="fork-count">forks 62</span>
-      <span class="commit-count">commits 750</span>
-    </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 154">
-      <div class="activity-bar"><span style="width: 15%"></span></div>
-      <div class="activity-meta">
-        <span>38 commits / 30d</span>
-        <span>score 154</span>
-      </div>
-    </div>
-  </td>
-</tr>
-<tr data-stars="292" data-pushed="1780884087" data-score="154" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
+<tr data-stars="293" data-pushed="1780884087" data-score="154" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropic-sdk-csharp</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-csharp</a></td>
   <td><span class="tag lang-csharp">C#</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in C#<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs in C#</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for C provides access to the Claude API from C applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for C</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 292</span>
+      <span class="star-count">stars 293</span>
       <span class="fork-count">forks 91</span>
       <span class="commit-count">commits 366</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 154">
       <div class="activity-bar"><span style="width: 15%"></span></div>
       <div class="activity-meta">
@@ -974,54 +977,94 @@
     </div>
   </td>
 </tr>
-<tr data-stars="499" data-pushed="1780765301" data-score="149" data-name="anthropic-cli" data-cluster="sdks-api-cli">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropic-cli</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropics/anthropic-cli</a></td>
-  <td><span class="tag lang-go">Go</span></td>
-  <td class="description-cell">The CLI for the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
+<tr data-stars="345" data-pushed="1780777031" data-score="151" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropic-sdk-ruby</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-ruby</a></td>
+  <td><span class="tag lang-ruby">Ruby</span></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Ruby provides access to the Claude API from Ruby applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Ruby</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 499</span>
-      <span class="fork-count">forks 64</span>
-      <span class="commit-count">commits 156</span>
+      <span class="star-count">stars 345</span>
+      <span class="fork-count">forks 62</span>
+      <span class="commit-count">commits 750</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 149">
+    <div class="activity-block" aria-label="Recent activity score 151">
       <div class="activity-bar"><span style="width: 15%"></span></div>
       <div class="activity-meta">
-        <span>21 commits / 30d</span>
-        <span>score 149</span>
+        <span>38 commits / 30d</span>
+        <span>score 151</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="415" data-pushed="1780650619" data-score="148" data-name="connect-rust" data-cluster="systems-protocols">
+<tr data-stars="501" data-pushed="1780765301" data-score="147" data-name="anthropic-cli" data-cluster="sdks-api-cli">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropic-cli</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropics/anthropic-cli</a></td>
+  <td><span class="tag lang-go">Go</span></td>
+  <td class="description-cell"><p class="repo-desc">The CLI for the Claude API</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">To test or install the CLI locally, you need Go version 1.22 or later installed.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">SDK</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">Claude Platform CLI</span><span class="content-heading">Installation</span><span class="content-heading">Installing with Homebrew</span><span class="content-heading">Installing with Go</span><span class="content-heading">Running Locally</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-sdks-api-cli">SDKs, APIs &amp; CLIs</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 501</span>
+      <span class="fork-count">forks 65</span>
+      <span class="commit-count">commits 156</span>
+    </div>
+    <span class="last-updated">pushed Jun 06, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 147">
+      <div class="activity-bar"><span style="width: 14%"></span></div>
+      <div class="activity-meta">
+        <span>21 commits / 30d</span>
+        <span>score 147</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="414" data-pushed="1780650619" data-score="145" data-name="connect-rust" data-cluster="systems-protocols">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">connect-rust</a></div><a class="repo-slug" href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">anthropics/connect-rust</a></td>
   <td><span class="tag lang-rust">Rust</span></td>
-  <td class="description-cell">An implementation of the ConnectRPC protocol for Rust<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="description-cell"><p class="repo-desc">An implementation of the ConnectRPC protocol for Rust</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A Tower-based Rust implementation of ConnectRPC, serving Connect, gRPC, and gRPC-Web clients over HTTP with binary or JSON protobuf messages.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">connectrpc</span><span class="content-heading">Overview</span><span class="content-heading">Quick Start</span><span class="content-heading">Define your service</span><span class="content-heading">Generate Rust code</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 415</span>
+      <span class="star-count">stars 414</span>
       <span class="fork-count">forks 43</span>
       <span class="commit-count">commits 96</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 148">
+    <div class="activity-block" aria-label="Recent activity score 145">
       <div class="activity-bar"><span style="width: 14%"></span></div>
       <div class="activity-meta">
         <span>30 commits / 30d</span>
-        <span>score 148</span>
+        <span>score 145</span>
       </div>
     </div>
   </td>
 </tr>
-<tr data-stars="2482" data-pushed="1773422143" data-score="112" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
+<tr data-stars="322" data-pushed="1780908485" data-score="117" data-name="claude-ai-mcp" data-cluster="systems-protocols">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-ai-mcp" target="_blank" rel="noreferrer">claude-ai-mcp</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-ai-mcp" target="_blank" rel="noreferrer">anthropics/claude-ai-mcp</a></td>
+  <td><span class="tag lang-mixed">Mixed</span></td>
+  <td class="description-cell"><p class="repo-desc">Report issues related to MCP integration with Claude here.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository is the communication hub for MCP (Model Context Protocol) integration in Claude.ai . Use it to stay updated on technical changes and to report bugs or request features.</p><div class="content-signals"><span class="content-chip">MCP</span></div><div class="content-headings"><span class="content-heading">Claude.ai MCP Integration</span><span class="content-heading">How to Stay Updated</span><span class="content-heading">Report a Bug or Request a Feature</span><span class="content-heading">What This Covers</span><span class="content-heading">What This Does NOT Cover</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="claude-ai" title="Filter by claude-ai">claude-ai</button><button class="keyword-button" type="button" data-filter-keyword="model-context-protocol" title="Filter by model-context-protocol">model-context-protocol</button></div></td>
+  <td><a class="cluster-pill cluster-link" href="#cluster-systems-protocols">Systems &amp; Protocol Libraries</a></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 322</span>
+      <span class="fork-count">forks 45</span>
+      <span class="commit-count">commits 18</span>
+    </div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+    <div class="activity-block" aria-label="Recent activity score 117">
+      <div class="activity-bar"><span style="width: 11%"></span></div>
+      <div class="activity-meta">
+        <span>2 commits / 30d</span>
+        <span>score 117</span>
+      </div>
+    </div>
+  </td>
+</tr>
+<tr data-stars="2488" data-pushed="1773422143" data-score="112" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">claude-agent-sdk-demos</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-demos</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">Claude Code SDK Demos<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Claude Code SDK Demos</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository contains multiple demonstrations of the Claude Agent SDK, showcasing different ways to build AI-powered applications with Claude.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK Demos</span><span class="content-heading">Available Demos</span><span class="content-heading">Email Agent</span><span class="content-heading">Excel Demo</span><span class="content-heading">Hello World</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td><a class="cluster-pill cluster-link" href="#cluster-claude-code-agents">Claude Code &amp; Agent Workflows</a></td>
   <td class="github-cell">
     <div class="gh-stats">
@@ -1030,34 +1073,11 @@
       <span class="commit-count">commits 69</span>
     </div>
     <span class="last-updated">pushed Mar 13, 2026</span>
-    
     <div class="activity-block" aria-label="Recent activity score 112">
       <div class="activity-bar"><span style="width: 11%"></span></div>
       <div class="activity-meta">
         <span>0 commits / 30d</span>
         <span>score 112</span>
-      </div>
-    </div>
-  </td>
-</tr>
-<tr data-stars="2207" data-pushed="1776381907" data-score="105" data-name="claude-desktop-buddy" data-cluster="domain-solutions">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">claude-desktop-buddy</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">anthropics/claude-desktop-buddy</a></td>
-  <td><span class="tag lang-cpp">C++</span></td>
-  <td class="description-cell">Reference and an example for the Bluetooth API for makers in Claude Cowork &amp; Claude Code Desktop<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
-  <td><a class="cluster-pill cluster-link" href="#cluster-domain-solutions">Industry &amp; Domain Solutions</a></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 2.2k</span>
-      <span class="fork-count">forks 367</span>
-      <span class="commit-count">commits 2</span>
-    </div>
-    <span class="last-updated">pushed Apr 16, 2026</span>
-    
-    <div class="activity-block" aria-label="Recent activity score 105">
-      <div class="activity-bar"><span style="width: 10%"></span></div>
-      <div class="activity-meta">
-        <span>0 commits / 30d</span>
-        <span>score 105</span>
       </div>
     </div>
   </td>
@@ -1074,7 +1094,7 @@
       <h2><span class="section-mark section-mark-clay"></span>Claude Code &amp; Agent Workflows</h2>
       <p>Claude Code, GitHub Actions, agent SDKs, demos, and long-running automation patterns. Showing up to 25 repositories by stars.</p>
     </div>
-    <span class="count-pill">7 repos</span>
+    <span class="count-pill">5 repos</span>
   </div>
   <div class="table-wrap">
     <table>
@@ -1093,52 +1113,36 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="130976" data-pushed="1780789313" data-score="1007" data-name="claude-code" data-cluster="claude-code-agents">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">claude-code</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></td>
-  <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 131k</span>
-      <span class="fork-count">forks 21.2k</span>
-      <span class="commit-count">commits 657</span>
-    </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-  </td>
-</tr>
-<tr data-stars="7905" data-pushed="1780898921" data-score="366" data-name="claude-code-action" data-cluster="claude-code-agents">
+<tr data-stars="7912" data-pushed="1780955942" data-score="367" data-name="claude-code-action" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">claude-code-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-action" target="_blank" rel="noreferrer">anthropics/claude-code-action</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A general-purpose Claude Code action for GitHub PRs and issues that can answer questions and implement code changes. This action intelligently detects when to activate based on your workflow context—whether responding to @claude mentions, issue assignments, or executing...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">SDK</span></div><div class="content-headings"><span class="content-heading">Claude Code Action</span><span class="content-heading">Features</span><span class="content-heading">Upgrading from v0.x?</span><span class="content-heading">Quickstart</span><span class="content-heading">Solutions &amp; Use Cases</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 7.9k</span>
       <span class="fork-count">forks 1.9k</span>
-      <span class="commit-count">commits 624</span>
+      <span class="commit-count">commits 625</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="7224" data-pushed="1780789361" data-score="371" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
+<tr data-stars="7226" data-pushed="1780956615" data-score="378" data-name="claude-agent-sdk-python" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">claude-agent-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-python</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Python SDK for Claude Agent. See the Claude Agent SDK documentation for more information.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">SDK</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK for Python</span><span class="content-heading">Installation</span><span class="content-heading">Quick Start</span><span class="content-heading">Basic Usage: query()</span><span class="content-heading">Using Tools</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 7.2k</span>
       <span class="fork-count">forks 1.1k</span>
-      <span class="commit-count">commits 616</span>
+      <span class="commit-count">commits 619</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
+    <span class="last-updated">pushed Jun 08, 2026</span>
   </td>
 </tr>
-<tr data-stars="2482" data-pushed="1773422143" data-score="112" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
+<tr data-stars="2488" data-pushed="1773422143" data-score="112" data-name="claude-agent-sdk-demos" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">claude-agent-sdk-demos</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-demos" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-demos</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">Claude Code SDK Demos<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Claude Code SDK Demos</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository contains multiple demonstrations of the Claude Agent SDK, showcasing different ways to build AI-powered applications with Claude.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK Demos</span><span class="content-heading">Available Demos</span><span class="content-heading">Email Agent</span><span class="content-heading">Excel Demo</span><span class="content-heading">Hello World</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 2.5k</span>
@@ -1146,49 +1150,32 @@
       <span class="commit-count">commits 69</span>
     </div>
     <span class="last-updated">pushed Mar 13, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="1505" data-pushed="1780789324" data-score="209" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
+<tr data-stars="1505" data-pushed="1780955835" data-score="213" data-name="claude-agent-sdk-typescript" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">claude-agent-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-agent-sdk-typescript" target="_blank" rel="noreferrer">anthropics/claude-agent-sdk-typescript</a></td>
   <td><span class="tag lang-shell">Shell</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude Agent SDK enables you to programmatically build AI agents with Claude Code&#x27;s capabilities. Create autonomous agents that can understand codebases, edit files, run commands, and execute complex workflows.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Agent SDK</span><span class="content-heading">Get started</span><span class="content-heading">Migrating from the Claude Code SDK</span><span class="content-heading">Reporting Bugs</span><span class="content-heading">Connect on Discord</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Agent SDK" title="Filter by Agent SDK">Agent SDK</button><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 1.5k</span>
       <span class="fork-count">forks 180</span>
-      <span class="commit-count">commits 217</span>
+      <span class="commit-count">commits 218</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
+    <span class="last-updated">pushed Jun 08, 2026</span>
   </td>
 </tr>
-<tr data-stars="865" data-pushed="1780789379" data-score="190" data-name="claude-code-base-action" data-cluster="claude-code-agents">
+<tr data-stars="866" data-pushed="1780955890" data-score="194" data-name="claude-code-base-action" data-cluster="claude-code-agents">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">claude-code-base-action</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code-base-action" target="_blank" rel="noreferrer">anthropics/claude-code-base-action</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">This repo is a mirror of the contents of base-action in https://github.com/anthropics/claude-code-action.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository is an automated mirror of the base-action directory from anthropics/claude-code-action.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">This is a Mirror Repository</span><span class="content-heading">Claude Code Base Action</span><span class="content-heading">Trust model</span><span class="content-heading">Usage</span><span class="content-heading">Workload Identity Federation</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 865</span>
+      <span class="star-count">stars 866</span>
       <span class="fork-count">forks 605</span>
-      <span class="commit-count">commits 388</span>
+      <span class="commit-count">commits 389</span>
     </div>
-    <span class="last-updated">pushed Jun 06, 2026</span>
-    
-  </td>
-</tr>
-<tr data-stars="396" data-pushed="1778633683" data-score="57" data-name="cwc-long-running-agents" data-cluster="claude-code-agents">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">cwc-long-running-agents</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">anthropics/cwc-long-running-agents</a></td>
-  <td><span class="tag lang-shell">Shell</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 396</span>
-      <span class="fork-count">forks 45</span>
-      <span class="commit-count">commits 3</span>
-    </div>
-    <span class="last-updated">pushed May 13, 2026</span>
-    
+    <span class="last-updated">pushed Jun 08, 2026</span>
   </td>
 </tr>
       </tbody>
@@ -1222,24 +1209,23 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="3591" data-pushed="1780852737" data-score="288" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
+<tr data-stars="3594" data-pushed="1780852737" data-score="285" data-name="anthropic-sdk-python" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropic-sdk-python</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-python" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-python</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Python provides access to the Claude API from Python applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Python</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Python" title="Filter by Python">Python</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 3.6k</span>
-      <span class="fork-count">forks 718</span>
+      <span class="fork-count">forks 720</span>
       <span class="commit-count">commits 1.1k</span>
     </div>
     <span class="last-updated">pushed Jun 07, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="1991" data-pushed="1780785904" data-score="245" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
+<tr data-stars="1993" data-pushed="1780785904" data-score="245" data-name="anthropic-sdk-typescript" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropic-sdk-typescript</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-typescript" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-typescript</a></td>
   <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs in TypeScript</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for TypeScript provides access to the Claude API from server-side TypeScript or JavaScript applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for TypeScript</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 2k</span>
@@ -1247,13 +1233,12 @@
       <span class="commit-count">commits 1.1k</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
   </td>
 </tr>
 <tr data-stars="1090" data-pushed="1780785870" data-score="214" data-name="anthropic-sdk-go" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropic-sdk-go</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-go" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-go</a></td>
   <td><span class="tag lang-go">Go</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs via Go<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs via Go</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Go provides access to the Claude API from Go applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Go</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button><button class="keyword-button" type="button" data-filter-keyword="Go" title="Filter by Go">Go</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 1.1k</span>
@@ -1261,27 +1246,25 @@
       <span class="commit-count">commits 580</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="499" data-pushed="1780765301" data-score="149" data-name="anthropic-cli" data-cluster="sdks-api-cli">
+<tr data-stars="501" data-pushed="1780765301" data-score="147" data-name="anthropic-cli" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropic-cli</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-cli" target="_blank" rel="noreferrer">anthropics/anthropic-cli</a></td>
   <td><span class="tag lang-go">Go</span></td>
-  <td class="description-cell">The CLI for the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
+  <td class="description-cell"><p class="repo-desc">The CLI for the Claude API</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">To test or install the CLI locally, you need Go version 1.22 or later installed.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">SDK</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">Claude Platform CLI</span><span class="content-heading">Installation</span><span class="content-heading">Installing with Homebrew</span><span class="content-heading">Installing with Go</span><span class="content-heading">Running Locally</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="api" title="Filter by api">api</button><button class="keyword-button" type="button" data-filter-keyword="cli" title="Filter by cli">cli</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 499</span>
-      <span class="fork-count">forks 64</span>
+      <span class="star-count">stars 501</span>
+      <span class="fork-count">forks 65</span>
       <span class="commit-count">commits 156</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="345" data-pushed="1780777031" data-score="154" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
+<tr data-stars="345" data-pushed="1780777031" data-score="151" data-name="anthropic-sdk-ruby" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropic-sdk-ruby</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-ruby" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-ruby</a></td>
   <td><span class="tag lang-ruby">Ruby</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Ruby provides access to the Claude API from Ruby applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Ruby</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 345</span>
@@ -1289,13 +1272,12 @@
       <span class="commit-count">commits 750</span>
     </div>
     <span class="last-updated">pushed Jun 06, 2026</span>
-    
   </td>
 </tr>
 <tr data-stars="326" data-pushed="1780880897" data-score="168" data-name="anthropic-sdk-java" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropic-sdk-java</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-java" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-java</a></td>
   <td><span class="tag lang-kotlin">Kotlin</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for Java provides access to the Claude API from Java applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for Java</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Gradle</span><span class="content-heading">Maven</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 326</span>
@@ -1303,21 +1285,19 @@
       <span class="commit-count">commits 646</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="292" data-pushed="1780884087" data-score="154" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
+<tr data-stars="293" data-pushed="1780884087" data-score="154" data-name="anthropic-sdk-csharp" data-cluster="sdks-api-cli">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropic-sdk-csharp</a></div><a class="repo-slug" href="https://github.com/anthropics/anthropic-sdk-csharp" target="_blank" rel="noreferrer">anthropics/anthropic-sdk-csharp</a></td>
   <td><span class="tag lang-csharp">C#</span></td>
-  <td class="description-cell">Access to Anthropic&#x27;s safety-first language model APIs in C#<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Access to Anthropic&#x27;s safety-first language model APIs in C#</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude SDK for C provides access to the Claude API from C applications.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude SDK for C</span><span class="content-heading">Documentation</span><span class="content-heading">Installation</span><span class="content-heading">Getting started</span><span class="content-heading">Requirements</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="SDK" title="Filter by SDK">SDK</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 292</span>
+      <span class="star-count">stars 293</span>
       <span class="fork-count">forks 91</span>
       <span class="commit-count">commits 366</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
   </td>
 </tr>
       </tbody>
@@ -1332,7 +1312,7 @@
       <h2><span class="section-mark section-mark-teal"></span>Skills, Plugins &amp; Marketplaces</h2>
       <p>Reusable Skills, Claude Code plugins, marketplace directories, and packaged workflows. Showing up to 25 repositories by stars.</p>
     </div>
-    <span class="count-pill">4 repos</span>
+    <span class="count-pill">7 repos</span>
   </div>
   <div class="table-wrap">
     <table>
@@ -1351,60 +1331,95 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="147754" data-pushed="1780863695" data-score="1031" data-name="skills" data-cluster="skills-plugins">
+<tr data-stars="148030" data-pushed="1780863695" data-score="1026" data-name="skills" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">skills</a></div><a class="repo-slug" href="https://github.com/anthropics/skills" target="_blank" rel="noreferrer">anthropics/skills</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Public repository for Agent Skills<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Public repository for Agent Skills</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that&#x27;s creating documents with your company&#x27;s brand...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">Skills</span><span class="content-heading">About This Repository</span><span class="content-heading">Disclaimer</span><span class="content-heading">Skill Sets</span><span class="content-heading">Try in Claude Code, Claude.ai, and the API</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="agent-skills" title="Filter by agent-skills">agent-skills</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 148k</span>
-      <span class="fork-count">forks 17.4k</span>
+      <span class="fork-count">forks 17.5k</span>
       <span class="commit-count">commits 38</span>
     </div>
     <span class="last-updated">pushed Jun 07, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="29608" data-pushed="1780880539" data-score="875" data-name="claude-plugins-official" data-cluster="skills-plugins">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">claude-plugins-official</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a></td>
+<tr data-stars="131111" data-pushed="1780955838" data-score="1014" data-name="claude-code" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">claude-code</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-code" target="_blank" rel="noreferrer">anthropics/claude-code</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Official, Anthropic-managed directory of high quality Claude Code Plugins.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows - all through natural language commands.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and helps you code faster by executing routine tasks, explaining complex code, and handling git workflows -- all through natural language commands. Use it in your terminal, IDE, or...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">CLI</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Code</span><span class="content-heading">Get started</span><span class="content-heading">Plugins</span><span class="content-heading">Reporting Bugs</span><span class="content-heading">Connect on Discord</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 29.6k</span>
-      <span class="fork-count">forks 3.2k</span>
-      <span class="commit-count">commits 717</span>
+      <span class="star-count">stars 131k</span>
+      <span class="fork-count">forks 21.2k</span>
+      <span class="commit-count">commits 658</span>
     </div>
     <span class="last-updated">pushed Jun 08, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="19611" data-pushed="1780855485" data-score="484" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
+<tr data-stars="29658" data-pushed="1780956231" data-score="876" data-name="claude-plugins-official" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">claude-plugins-official</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-plugins-official" target="_blank" rel="noreferrer">anthropics/claude-plugins-official</a></td>
+  <td><span class="tag lang-python">Python</span></td>
+  <td class="description-cell"><p class="repo-desc">Official, Anthropic-managed directory of high quality Claude Code Plugins.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Plugins can be installed directly from this marketplace via Claude Code&#x27;s plugin system.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Code Plugins Directory</span><span class="content-heading">Structure</span><span class="content-heading">Installation</span><span class="content-heading">Internal Plugins</span><span class="content-heading">External Plugins</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="claude-code" title="Filter by claude-code">claude-code</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 29.7k</span>
+      <span class="fork-count">forks 3.2k</span>
+      <span class="commit-count">commits 748</span>
+    </div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+  </td>
+</tr>
+<tr data-stars="19722" data-pushed="1780944049" data-score="487" data-name="knowledge-work-plugins" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">knowledge-work-plugins</a></div><a class="repo-slug" href="https://github.com/anthropics/knowledge-work-plugins" target="_blank" rel="noreferrer">anthropics/knowledge-work-plugins</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Open source repository of plugins primarily intended for knowledge workers to use in Claude Cowork</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Plugins that turn Claude into a specialist for your role, team, and company. Built for Claude Cowork, also compatible with Claude Code.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Knowledge Work Plugins</span><span class="content-heading">Why Plugins</span><span class="content-heading">Plugin Marketplace</span><span class="content-heading">Getting Started</span><span class="content-heading">Cowork</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 19.6k</span>
-      <span class="fork-count">forks 2.3k</span>
-      <span class="commit-count">commits 98</span>
+      <span class="star-count">stars 19.7k</span>
+      <span class="fork-count">forks 2.4k</span>
+      <span class="commit-count">commits 100</span>
     </div>
-    <span class="last-updated">pushed Jun 07, 2026</span>
-    
+    <span class="last-updated">pushed Jun 08, 2026</span>
   </td>
 </tr>
-<tr data-stars="5190" data-pushed="1780433613" data-score="261" data-name="defending-code-reference-harness" data-cluster="skills-plugins">
+<tr data-stars="5338" data-pushed="1780433613" data-score="260" data-name="defending-code-reference-harness" data-cluster="skills-plugins">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/defending-code-reference-harness" target="_blank" rel="noreferrer">defending-code-reference-harness</a></div><a class="repo-slug" href="https://github.com/anthropics/defending-code-reference-harness" target="_blank" rel="noreferrer">anthropics/defending-code-reference-harness</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Skills for threat modeling, scanning, triage, patching, plus an autonomous scanning harness you can /customize<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="security" title="Filter by security">security</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Skills for threat modeling, scanning, triage, patching, plus an autonomous scanning harness you can /customize</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A reference implementation for autonomous vulnerability discovery and remediation with Claude, based on our learnings from partnering with security teams at several organizations since launching Claude Mythos Preview. For a write up of these learnings along with best...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">Skills</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Defending Code Reference Harness</span><span class="content-heading">Getting Started</span><span class="content-heading">Further Reading</span><span class="content-heading">Ramp Up</span><span class="content-heading">Step 1 (Day 1): Build a threat model and run your...</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Skills" title="Filter by Skills">Skills</button><button class="keyword-button" type="button" data-filter-keyword="security" title="Filter by security">security</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 5.2k</span>
-      <span class="fork-count">forks 345</span>
+      <span class="star-count">stars 5.3k</span>
+      <span class="fork-count">forks 358</span>
       <span class="commit-count">commits 6</span>
     </div>
     <span class="last-updated">pushed Jun 02, 2026</span>
-    
+  </td>
+</tr>
+<tr data-stars="879" data-pushed="1780906708" data-score="168" data-name="cwc-workshops" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
+  <td><span class="tag lang-typescript">TypeScript</span></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Workshop materials. Not maintained and not accepting contributions.</p><div class="content-signals"><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Skills</span><span class="content-chip">Tutorial</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">cwc-workshops</span><span class="content-heading">Workshops</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 879</span>
+      <span class="fork-count">forks 238</span>
+      <span class="commit-count">commits 27</span>
+    </div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
+  </td>
+</tr>
+<tr data-stars="398" data-pushed="1778633683" data-score="57" data-name="cwc-long-running-agents" data-cluster="skills-plugins">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">cwc-long-running-agents</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-long-running-agents" target="_blank" rel="noreferrer">anthropics/cwc-long-running-agents</a></td>
+  <td><span class="tag lang-shell">Shell</span></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude Code&#x27;s built-in /goal command gives you a generator/evaluator loop out of the box: set a completion condition and a separate fast model checks it after every turn until it&#x27;s met. This repo ships the same underlying primitives as short, readable hooks and a subagent, so...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">SDK</span></div><div class="content-headings"><span class="content-heading">Harness Primitives for Long-Running Claude Agents</span><span class="content-heading">How to use this repo</span><span class="content-heading">The quality loop</span><span class="content-heading">Default-FAIL contract</span><span class="content-heading">Fresh-context evaluator</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 398</span>
+      <span class="fork-count">forks 45</span>
+      <span class="commit-count">commits 3</span>
+    </div>
+    <span class="last-updated">pushed May 13, 2026</span>
   </td>
 </tr>
       </tbody>
@@ -1419,7 +1434,7 @@
       <h2><span class="section-mark section-mark-blue"></span>Cookbooks, Quickstarts &amp; Learning</h2>
       <p>Tutorials, notebooks, quickstarts, workshops, and recipes for learning Claude patterns. Showing up to 25 repositories by stars.</p>
     </div>
-    <span class="count-pill">3 repos</span>
+    <span class="count-pill">2 repos</span>
   </div>
   <div class="table-wrap">
     <table>
@@ -1438,10 +1453,10 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="45111" data-pushed="1780104712" data-score="600" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
+<tr data-stars="45139" data-pushed="1780104712" data-score="600" data-name="claude-cookbooks" data-cluster="learning-quickstarts">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">claude-cookbooks</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-cookbooks" target="_blank" rel="noreferrer">anthropics/claude-cookbooks</a></td>
   <td><span class="tag lang-jupyter">Jupyter Notebook</span></td>
-  <td class="description-cell">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A collection of notebooks/recipes showcasing some fun and effective ways of using Claude.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">The Claude Cookbooks provide code and guides designed to help developers build with Claude, offering copy-able code snippets that you can easily integrate into your own projects.</p><div class="content-signals"><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Cookbooks</span><span class="content-heading">Prerequisites</span><span class="content-heading">Explore Further</span><span class="content-heading">Table of recipes</span><span class="content-heading">Capabilities</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Cookbooks" title="Filter by Cookbooks">Cookbooks</button><button class="keyword-button" type="button" data-filter-keyword="Jupyter" title="Filter by Jupyter">Jupyter</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 45.1k</span>
@@ -1449,13 +1464,12 @@
       <span class="commit-count">commits 581</span>
     </div>
     <span class="last-updated">pushed May 30, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="16954" data-pushed="1780002179" data-score="383" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
+<tr data-stars="16957" data-pushed="1780002179" data-score="379" data-name="claude-quickstarts" data-cluster="learning-quickstarts">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">claude-quickstarts</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-quickstarts" target="_blank" rel="noreferrer">anthropics/claude-quickstarts</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A collection of projects designed to help developers quickly get started with building deployable applications using the Claude API</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude Quickstarts is a collection of projects designed to help developers quickly get started with building applications using the Claude API. Each quickstart provides a foundation that you can easily build upon and customize for your specific needs.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">SDK</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Claude Quickstarts</span><span class="content-heading">Getting Started</span><span class="content-heading">Available Quickstarts</span><span class="content-heading">Customer Support Agent</span><span class="content-heading">Financial Data Analyst</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Quickstart" title="Filter by Quickstart">Quickstart</button><button class="keyword-button" type="button" data-filter-keyword="TypeScript" title="Filter by TypeScript">TypeScript</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 17k</span>
@@ -1463,21 +1477,6 @@
       <span class="commit-count">commits 85</span>
     </div>
     <span class="last-updated">pushed May 28, 2026</span>
-    
-  </td>
-</tr>
-<tr data-stars="861" data-pushed="1780611655" data-score="157" data-name="cwc-workshops" data-cluster="learning-quickstarts">
-  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">cwc-workshops</a></div><a class="repo-slug" href="https://github.com/anthropics/cwc-workshops" target="_blank" rel="noreferrer">anthropics/cwc-workshops</a></td>
-  <td><span class="tag lang-typescript">TypeScript</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
-  <td class="github-cell">
-    <div class="gh-stats">
-      <span class="star-count">stars 861</span>
-      <span class="fork-count">forks 237</span>
-      <span class="commit-count">commits 26</span>
-    </div>
-    <span class="last-updated">pushed Jun 04, 2026</span>
-    
   </td>
 </tr>
       </tbody>
@@ -1511,24 +1510,23 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="30447" data-pushed="1780692789" data-score="533" data-name="financial-services" data-cluster="domain-solutions">
+<tr data-stars="30525" data-pushed="1780692789" data-score="528" data-name="financial-services" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">financial-services</a></div><a class="repo-slug" href="https://github.com/anthropics/financial-services" target="_blank" rel="noreferrer">anthropics/financial-services</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Reference agents, skills, and data connectors for the financial-services workflows we see most — investment banking, equity research, private equity, and wealth management.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span></div><div class="content-headings"><span class="content-heading">Claude for Financial Services</span><span class="content-heading">Agents</span><span class="content-heading">Repository Layout</span><span class="content-heading">Getting Started</span><span class="content-heading">Cowork</span></div></div><div class="topic-row"></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 30.4k</span>
+      <span class="star-count">stars 30.5k</span>
       <span class="fork-count">forks 4.3k</span>
       <span class="commit-count">commits 61</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="8128" data-pushed="1780587964" data-score="346" data-name="claude-for-legal" data-cluster="domain-solutions">
+<tr data-stars="8143" data-pushed="1780587964" data-score="342" data-name="claude-for-legal" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">claude-for-legal</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-for-legal" target="_blank" rel="noreferrer">anthropics/claude-for-legal</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">A suite of plugins for legal workflows<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
+  <td class="description-cell"><p class="repo-desc">A suite of plugins for legal workflows</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Reference agents, skills, and data connectors for the legal workflows we see most — in-house commercial, privacy, product, corporate, employment, litigation, regulatory, AI governance, IP, and the learning side of the practice (law school clinics and students).</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span></div><div class="content-headings"><span class="content-heading">Claude for Legal</span><span class="content-heading">Getting started in Cowork</span><span class="content-heading">Agents</span><span class="content-heading">Repository Layout</span><span class="content-heading">Getting Started</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Plugins" title="Filter by Plugins">Plugins</button><button class="keyword-button" type="button" data-filter-keyword="Legal" title="Filter by Legal">Legal</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 8.1k</span>
@@ -1536,41 +1534,38 @@
       <span class="commit-count">commits 33</span>
     </div>
     <span class="last-updated">pushed Jun 04, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="2207" data-pushed="1776381907" data-score="105" data-name="claude-desktop-buddy" data-cluster="domain-solutions">
+<tr data-stars="2213" data-pushed="1776381907" data-score="105" data-name="claude-desktop-buddy" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">claude-desktop-buddy</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-desktop-buddy" target="_blank" rel="noreferrer">anthropics/claude-desktop-buddy</a></td>
   <td><span class="tag lang-cpp">C++</span></td>
-  <td class="description-cell">Reference and an example for the Bluetooth API for makers in Claude Cowork &amp; Claude Code Desktop<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Reference and an example for the Bluetooth API for makers in Claude Cowork &amp; Claude Code Desktop</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Claude for macOS and Windows can connect Claude Cowork and Claude Code to maker devices over BLE, so developers and makers can build hardware that displays permission prompts, recent messages, and other interactions. We&#x27;ve been impressed by the creativity of the maker...</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Examples</span><span class="content-chip">API</span></div><div class="content-headings"><span class="content-heading">claude-desktop-buddy</span><span class="content-heading">Hardware</span><span class="content-heading">Flashing</span><span class="content-heading">Pairing</span><span class="content-heading">Controls</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Claude API" title="Filter by Claude API">Claude API</button><button class="keyword-button" type="button" data-filter-keyword="Cowork" title="Filter by Cowork">Cowork</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 2.2k</span>
-      <span class="fork-count">forks 367</span>
+      <span class="fork-count">forks 368</span>
       <span class="commit-count">commits 2</span>
     </div>
     <span class="last-updated">pushed Apr 16, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="420" data-pushed="1778259294" data-score="46" data-name="life-sciences" data-cluster="domain-solutions">
+<tr data-stars="421" data-pushed="1778259294" data-score="46" data-name="life-sciences" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/life-sciences" target="_blank" rel="noreferrer">life-sciences</a></div><a class="repo-slug" href="https://github.com/anthropics/life-sciences" target="_blank" rel="noreferrer">anthropics/life-sciences</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">Repo for the Claude Code Marketplace to use with the Claude for Life Sciences Launch. This will continue to host the marketplace.json long-term, but not the actual MCP servers.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Marketplace" title="Filter by Marketplace">Marketplace</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="Life Sciences" title="Filter by Life Sciences">Life Sciences</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Repo for the Claude Code Marketplace to use with the Claude for Life Sciences Launch. This will continue to host the marketplace.json long-term, but not the actual MCP servers.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This marketplace provides MCP (Model Context Protocol) servers and skills for life sciences tools. Install these plugins to access specialized research and analysis tools directly within Claude Code.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span></div><div class="content-headings"><span class="content-heading">Life Sciences Marketplace for Claude Code</span><span class="content-heading">Quick Start</span><span class="content-heading">Available Plugins</span><span class="content-heading">Remote MCP Servers</span><span class="content-heading">Local MCP Servers (MCPB)</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="Claude Code" title="Filter by Claude Code">Claude Code</button><button class="keyword-button" type="button" data-filter-keyword="Marketplace" title="Filter by Marketplace">Marketplace</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="Life Sciences" title="Filter by Life Sciences">Life Sciences</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 420</span>
+      <span class="star-count">stars 421</span>
       <span class="fork-count">forks 80</span>
       <span class="commit-count">commits 73</span>
     </div>
     <span class="last-updated">pushed May 08, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="293" data-pushed="1780351538" data-score="103" data-name="healthcare" data-cluster="domain-solutions">
+<tr data-stars="293" data-pushed="1780351538" data-score="100" data-name="healthcare" data-cluster="domain-solutions">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/healthcare" target="_blank" rel="noreferrer">healthcare</a></div><a class="repo-slug" href="https://github.com/anthropics/healthcare" target="_blank" rel="noreferrer">anthropics/healthcare</a></td>
   <td><span class="tag lang-python">Python</span></td>
-  <td class="description-cell">No description provided.<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Healthcare" title="Filter by Healthcare">Healthcare</button></div></td>
+  <td class="description-cell"><p class="repo-desc">No description provided.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">Skills for healthcare workflows including clinical trials, prior authorization review, and FHIR API development.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">MCP</span><span class="content-chip">Plugins</span><span class="content-chip">Skills</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">Healthcare Marketplace for Claude Code</span><span class="content-heading">Quick Start</span><span class="content-heading">Available Skills</span><span class="content-heading">FHIR Developer</span><span class="content-heading">Prior Authorization Review (Demo)</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Healthcare" title="Filter by Healthcare">Healthcare</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
       <span class="star-count">stars 293</span>
@@ -1578,7 +1573,6 @@
       <span class="commit-count">commits 82</span>
     </div>
     <span class="last-updated">pushed Jun 01, 2026</span>
-    
   </td>
 </tr>
       </tbody>
@@ -1593,7 +1587,7 @@
       <h2><span class="section-mark section-mark-green"></span>Systems &amp; Protocol Libraries</h2>
       <p>Lower-level Rust and protocol libraries maintained in the Anthropic organization. Showing up to 25 repositories by stars.</p>
     </div>
-    <span class="count-pill">2 repos</span>
+    <span class="count-pill">3 repos</span>
   </div>
   <div class="table-wrap">
     <table>
@@ -1612,32 +1606,43 @@
         </tr>
       </thead>
       <tbody>
-<tr data-stars="760" data-pushed="1780667827" data-score="187" data-name="buffa" data-cluster="systems-protocols">
+<tr data-stars="761" data-pushed="1780667827" data-score="184" data-name="buffa" data-cluster="systems-protocols">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">buffa</a></div><a class="repo-slug" href="https://github.com/anthropics/buffa" target="_blank" rel="noreferrer">anthropics/buffa</a></td>
   <td><span class="tag lang-rust">Rust</span></td>
-  <td class="description-cell">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="description-cell"><p class="repo-desc">Rust implementation of protobuf with editions support, JSON serialization, and zero-copy views</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A pure-Rust Protocol Buffers implementation with first-class protobuf editions support. Written by Claude and friends</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">CLI</span><span class="content-chip">GitHub Action</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span></div><div class="content-headings"><span class="content-heading">buffa</span><span class="content-heading">Why buffa?</span><span class="content-heading">Features</span><span class="content-heading">Wire formats</span><span class="content-heading">Unsupported features</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 760</span>
+      <span class="star-count">stars 761</span>
       <span class="fork-count">forks 58</span>
       <span class="commit-count">commits 109</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
   </td>
 </tr>
-<tr data-stars="415" data-pushed="1780650619" data-score="148" data-name="connect-rust" data-cluster="systems-protocols">
+<tr data-stars="414" data-pushed="1780650619" data-score="145" data-name="connect-rust" data-cluster="systems-protocols">
   <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">connect-rust</a></div><a class="repo-slug" href="https://github.com/anthropics/connect-rust" target="_blank" rel="noreferrer">anthropics/connect-rust</a></td>
   <td><span class="tag lang-rust">Rust</span></td>
-  <td class="description-cell">An implementation of the ConnectRPC protocol for Rust<div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
+  <td class="description-cell"><p class="repo-desc">An implementation of the ConnectRPC protocol for Rust</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">A Tower-based Rust implementation of ConnectRPC, serving Connect, gRPC, and gRPC-Web clients over HTTP with binary or JSON protobuf messages.</p><div class="content-signals"><span class="content-chip">Install</span><span class="content-chip">Quickstart</span><span class="content-chip">Examples</span><span class="content-chip">API</span><span class="content-chip">Plugins</span><span class="content-chip">Docs</span><span class="content-chip">Tests</span></div><div class="content-headings"><span class="content-heading">connectrpc</span><span class="content-heading">Overview</span><span class="content-heading">Quick Start</span><span class="content-heading">Define your service</span><span class="content-heading">Generate Rust code</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Rust" title="Filter by Rust">Rust</button></div></td>
   <td class="github-cell">
     <div class="gh-stats">
-      <span class="star-count">stars 415</span>
+      <span class="star-count">stars 414</span>
       <span class="fork-count">forks 43</span>
       <span class="commit-count">commits 96</span>
     </div>
     <span class="last-updated">pushed Jun 05, 2026</span>
-    
+  </td>
+</tr>
+<tr data-stars="322" data-pushed="1780908485" data-score="117" data-name="claude-ai-mcp" data-cluster="systems-protocols">
+  <td><div class="repo-name"><img src="https://github.com/anthropics.png?size=32" alt="" class="avatar"><a href="https://github.com/anthropics/claude-ai-mcp" target="_blank" rel="noreferrer">claude-ai-mcp</a></div><a class="repo-slug" href="https://github.com/anthropics/claude-ai-mcp" target="_blank" rel="noreferrer">anthropics/claude-ai-mcp</a></td>
+  <td><span class="tag lang-mixed">Mixed</span></td>
+  <td class="description-cell"><p class="repo-desc">Report issues related to MCP integration with Claude here.</p><div class="content-block"><div class="content-label">README content</div><p class="readme-summary">This repository is the communication hub for MCP (Model Context Protocol) integration in Claude.ai . Use it to stay updated on technical changes and to report bugs or request features.</p><div class="content-signals"><span class="content-chip">MCP</span></div><div class="content-headings"><span class="content-heading">Claude.ai MCP Integration</span><span class="content-heading">How to Stay Updated</span><span class="content-heading">Report a Bug or Request a Feature</span><span class="content-heading">What This Covers</span><span class="content-heading">What This Does NOT Cover</span></div></div><div class="topic-row"><button class="keyword-button" type="button" data-filter-keyword="Claude" title="Filter by Claude">Claude</button><button class="keyword-button" type="button" data-filter-keyword="MCP" title="Filter by MCP">MCP</button><button class="keyword-button" type="button" data-filter-keyword="anthropic" title="Filter by anthropic">anthropic</button><button class="keyword-button" type="button" data-filter-keyword="claude-ai" title="Filter by claude-ai">claude-ai</button><button class="keyword-button" type="button" data-filter-keyword="model-context-protocol" title="Filter by model-context-protocol">model-context-protocol</button></div></td>
+  <td class="github-cell">
+    <div class="gh-stats">
+      <span class="star-count">stars 322</span>
+      <span class="fork-count">forks 45</span>
+      <span class="commit-count">commits 18</span>
+    </div>
+    <span class="last-updated">pushed Jun 08, 2026</span>
   </td>
 </tr>
       </tbody>
@@ -1657,7 +1662,7 @@
       <span style="margin: 0 4px;">/</span>
       <a class="gh-link" href="https://www.anthropic.com/engineering" target="_blank" rel="noreferrer" style="display: inline;">Engineering</a>
     </p>
-    <p style="text-align: center;">Generated from the GitHub API. Last updated: <span id="last-updated-date">2026-06-08 07:56 UTC</span></p>
+    <p style="text-align: center;">Generated from the GitHub API. Last updated: <span id="last-updated-date">2026-06-08 22:12 UTC</span></p>
   </footer>
 
 <script>

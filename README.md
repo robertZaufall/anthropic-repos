@@ -32,8 +32,9 @@ python3 update_stats.py
 ```
 
 The script fetches stars, forks, total commits, recent commits, last commit
-dates, primary language, topics, and descriptions from GitHub. It rewrites the
-fresh-traction table, the purpose cluster tables, and `stats_history.json`.
+dates, primary language, topics, descriptions, and README content from GitHub.
+It rewrites the fresh-traction table, the purpose cluster tables, README
+content summaries, and `stats_history.json`.
 
 For local runs, authenticate with the GitHub CLI or set `GITHUB_TOKEN`:
 
