@@ -52,7 +52,7 @@ The page contains six rough purpose clusters:
 3. Skills, Plugins & Marketplaces
 4. Cookbooks, Quickstarts & Learning
 5. Industry & Domain Solutions
-6. Systems & Protocol Libraries
+6. Research, Systems & Protocols
 
 Each cluster table shows up to the top 25 repositories by stars.
 
