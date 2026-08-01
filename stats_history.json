@@ -10714,6 +10714,176 @@
           "stars": 165332
         }
       }
+    },
+    {
+      "date": "2026-08-01",
+      "repos": {
+        "anthropics/ClaudeForFoundationModels": {
+          "forks": 25,
+          "pushed_at": "2026-07-24T16:53:10Z",
+          "stars": 269
+        },
+        "anthropics/anthropic-cli": {
+          "forks": 93,
+          "pushed_at": "2026-07-24T19:34:56Z",
+          "stars": 606
+        },
+        "anthropics/anthropic-sdk-csharp": {
+          "forks": 101,
+          "pushed_at": "2026-07-28T01:58:33Z",
+          "stars": 313
+        },
+        "anthropics/anthropic-sdk-go": {
+          "forks": 199,
+          "pushed_at": "2026-07-24T23:10:14Z",
+          "stars": 1162
+        },
+        "anthropics/anthropic-sdk-java": {
+          "forks": 89,
+          "pushed_at": "2026-07-24T19:34:30Z",
+          "stars": 354
+        },
+        "anthropics/anthropic-sdk-python": {
+          "forks": 791,
+          "pushed_at": "2026-07-28T17:38:28Z",
+          "stars": 3784
+        },
+        "anthropics/anthropic-sdk-ruby": {
+          "forks": 70,
+          "pushed_at": "2026-07-24T19:34:51Z",
+          "stars": 360
+        },
+        "anthropics/anthropic-sdk-typescript": {
+          "forks": 374,
+          "pushed_at": "2026-07-24T19:34:38Z",
+          "stars": 2063
+        },
+        "anthropics/buffa": {
+          "forks": 78,
+          "pushed_at": "2026-07-24T07:03:00Z",
+          "stars": 852
+        },
+        "anthropics/claude-agent-sdk-python": {
+          "forks": 1197,
+          "pushed_at": "2026-07-25T01:49:40Z",
+          "stars": 7776
+        },
+        "anthropics/claude-agent-sdk-typescript": {
+          "forks": 205,
+          "pushed_at": "2026-07-25T01:35:41Z",
+          "stars": 1667
+        },
+        "anthropics/claude-ai-mcp": {
+          "forks": 66,
+          "pushed_at": "2026-06-08T08:48:05Z",
+          "stars": 419
+        },
+        "anthropics/claude-code": {
+          "forks": 22452,
+          "pushed_at": "2026-07-25T01:35:55Z",
+          "stars": 139855
+        },
+        "anthropics/claude-code-action": {
+          "forks": 2020,
+          "pushed_at": "2026-07-25T01:37:40Z",
+          "stars": 8517
+        },
+        "anthropics/claude-code-base-action": {
+          "forks": 611,
+          "pushed_at": "2026-07-25T01:36:38Z",
+          "stars": 931
+        },
+        "anthropics/claude-cookbooks": {
+          "forks": 5985,
+          "pushed_at": "2026-07-23T17:32:41Z",
+          "stars": 50768
+        },
+        "anthropics/claude-for-legal": {
+          "forks": 1723,
+          "pushed_at": "2026-07-23T00:46:01Z",
+          "stars": 8978
+        },
+        "anthropics/claude-plugins-community": {
+          "forks": 81,
+          "pushed_at": "2026-07-31T19:31:47Z",
+          "stars": 331
+        },
+        "anthropics/claude-plugins-official": {
+          "forks": 3714,
+          "pushed_at": "2026-08-01T00:08:09Z",
+          "stars": 32925
+        },
+        "anthropics/claude-quickstarts": {
+          "forks": 2999,
+          "pushed_at": "2026-07-24T20:14:19Z",
+          "stars": 17345
+        },
+        "anthropics/code-migration-kit-with-claude-code": {
+          "forks": 18,
+          "pushed_at": "2026-07-08T15:00:59Z",
+          "stars": 263
+        },
+        "anthropics/cwc-long-running-agents": {
+          "forks": 61,
+          "pushed_at": "2026-05-13T00:54:43Z",
+          "stars": 604
+        },
+        "anthropics/cwc-workshops": {
+          "forks": 540,
+          "pushed_at": "2026-06-26T16:32:46Z",
+          "stars": 1917
+        },
+        "anthropics/defending-code-reference-harness": {
+          "forks": 556,
+          "pushed_at": "2026-07-16T16:35:42Z",
+          "stars": 6889
+        },
+        "anthropics/financial-services": {
+          "forks": 5018,
+          "pushed_at": "2026-07-22T18:24:37Z",
+          "stars": 33923
+        },
+        "anthropics/healthcare": {
+          "forks": 95,
+          "pushed_at": "2026-07-16T05:29:49Z",
+          "stars": 369
+        },
+        "anthropics/html-effectiveness": {
+          "forks": 50,
+          "pushed_at": "2026-07-03T17:37:46Z",
+          "stars": 613
+        },
+        "anthropics/jacobian-lens": {
+          "forks": 237,
+          "pushed_at": "2026-07-25T01:43:16Z",
+          "stars": 1641
+        },
+        "anthropics/k12-teacher-skills": {
+          "forks": 47,
+          "pushed_at": "2026-07-13T22:32:56Z",
+          "stars": 250
+        },
+        "anthropics/knowledge-work-plugins": {
+          "forks": 2790,
+          "pushed_at": "2026-08-01T00:10:31Z",
+          "stars": 23215
+        },
+        "anthropics/launch-your-agent": {
+          "forks": 169,
+          "pushed_at": "2026-07-07T12:53:08Z",
+          "stars": 886
+        },
+        "anthropics/life-sciences": {
+          "forks": 102,
+          "pushed_at": "2026-05-08T16:54:54Z",
+          "stars": 561
+        },
+        "anthropics/skills": {
+          "forks": 19677,
+          "pushed_at": "2026-07-24T20:12:36Z",
+          "stars": 165514
+        }
+      }
     }
   ]
 }
