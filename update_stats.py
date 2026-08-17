@@ -58,6 +58,8 @@ CONTENT_SIGNAL_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Docs", ("documentation", "docs")),
     ("Tutorial", ("tutorial", "workshop", "lesson")),
     ("Tests", ("test", "tests", "testing")),
+    ("Security", ("security", "threat modeling", "vulnerability")),
+    ("Education", ("education", "k-12", "teacher", "classroom")),
 )
 AUTO_KEYWORD_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Claude", ("claude",)),
@@ -77,6 +79,12 @@ AUTO_KEYWORD_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("Healthcare", ("healthcare", "health")),
     ("Financial Services", ("financial services", "finance")),
     ("Life Sciences", ("life sciences",)),
+    ("Security", ("security", "threat modeling", "defending")),
+    ("Education", ("education", "k-12", "k12", "teacher")),
+    ("HTML", ("html",)),
+    ("Foundation Models", ("foundation models", "foundationmodels")),
+    ("PHP", ("php",)),
+    ("Swift", ("swift",)),
     ("Python", ("python",)),
     ("TypeScript", ("typescript", "ts")),
     ("Go", ("go", "golang")),
@@ -143,9 +151,11 @@ CLUSTERS: tuple[Cluster, ...] = (
             "go",
             "java",
             "kotlin",
+            "php",
             "python",
             "ruby",
             "sdk",
+            "swift",
             "typescript",
         ),
     ),
@@ -653,8 +663,38 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             " ".join(repo.get("content_signals") or []),
         ]
     ).lower()
+    # Overrides use name/description/topics only so README wording cannot
+    # steal a repo into a generic skills or Claude Code bucket.
+    identity = " ".join(
+        [
+            repo["name"],
+            repo["description"],
+            " ".join(repo.get("topics") or []),
+        ]
+    ).lower()
     clusters_by_key = {cluster.key: cluster for cluster in CLUSTERS}
+    # Specific product/name matches first so generic words like "skills"
+    # in READMEs cannot steal Claude Code, workshops, or official SDKs.
     override_terms = {
+        "claude-code-agents": (
+            "claude-code",
+            "agent-sdk",
+            "long-running-agents",
+            "base-action",
+        ),
+        "sdks-api-cli": (
+            "anthropic-sdk",
+            "anthropic-cli",
+            "foundationmodels",
+            "foundation models",
+        ),
+        "learning-quickstarts": (
+            "cookbooks",
+            "quickstarts",
+            "tutorial",
+            "workshops",
+            "html-effectiveness",
+        ),
         "domain-solutions": (
             "financial-services",
             "healthcare",
@@ -671,31 +711,23 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             "protobuf",
             "zero-copy",
         ),
-        "sdks-api-cli": (
-            "anthropic-sdk",
-            "anthropic-cli",
-        ),
         "skills-plugins": (
             "skills",
             "plugins",
             "marketplace",
             "knowledge-work",
         ),
-        "learning-quickstarts": (
-            "cookbooks",
-            "quickstarts",
-            "tutorial",
-            "workshops",
-        ),
-        "claude-code-agents": (
-            "claude-code",
-            "agent-sdk",
-            "long-running-agents",
-            "base-action",
-        ),
     }
+    # Claude Code / agent-sdk tokens also appear as topics on plugin
+    # directories; those must match the repository name only.
+    name = repo["name"].lower()
+    for term in override_terms["claude-code-agents"]:
+        if term_matches(name, term):
+            return clusters_by_key["claude-code-agents"]
     for key, terms in override_terms.items():
-        if any(term_matches(haystack, term) for term in terms):
+        if key == "claude-code-agents":
+            continue
+        if any(term_matches(identity, term) for term in terms):
             return clusters_by_key[key]
 
     scores: list[tuple[int, int, Cluster]] = []
