@@ -203,10 +203,12 @@ CLUSTERS: tuple[Cluster, ...] = (
     Cluster(
         "domain-solutions",
         "Industry & Domain Solutions",
-        "Applied repositories for legal, healthcare, financial services, life sciences, and device workflows.",
+        "Applied repositories for legal, healthcare, financial services, life sciences, commerce, and device workflows.",
         "violet",
         (
             "bluetooth",
+            "commerce",
+            "commerce-agents",
             "desktop",
             "domain",
             "financial",
@@ -216,6 +218,9 @@ CLUSTERS: tuple[Cluster, ...] = (
             "legal",
             "life sciences",
             "makers",
+            "merchant",
+            "retail",
+            "shopping",
         ),
     ),
     Cluster(
@@ -708,6 +713,8 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             "claude-for-legal",
             "legal",
             "desktop-buddy",
+            "commerce-agents",
+            "commerce",
         ),
         "systems-protocols": (
             "buffa",
