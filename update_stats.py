@@ -245,6 +245,9 @@ CLUSTERS: tuple[Cluster, ...] = (
             "sandbox-runtime",
             "serialization",
             "systems",
+            "biomolecular",
+            "protein",
+            "genomics",
             "zero-copy",
         ),
     ),
@@ -724,6 +727,7 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             "jacobian-lens",
             "protobuf",
             "sandbox-runtime",
+            "uplifting-biomolecular-modeling",
             "zero-copy",
         ),
         "skills-plugins": (
