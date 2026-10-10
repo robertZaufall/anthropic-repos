@@ -226,7 +226,7 @@ CLUSTERS: tuple[Cluster, ...] = (
     Cluster(
         "systems-protocols",
         "Research, Systems & Protocols",
-        "Interpretability research code, lower-level systems libraries, and protocol implementations maintained by Anthropic.",
+        "Interpretability research code, security scanning, lower-level systems libraries, and protocol implementations maintained by Anthropic.",
         "green",
         (
             "connect",
@@ -725,6 +725,9 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             "connectrpc",
             "formal-math",
             "jacobian-lens",
+            # Evidence 2026-10-10: OSS Scanner security-vulnerability scanning service
+            # enrollment repo (empty description) fell to SDKs via "python" only.
+            "oss-scanner",
             "protobuf",
             "sandbox-runtime",
             "uplifting-biomolecular-modeling",
