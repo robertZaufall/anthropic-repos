@@ -86,7 +86,11 @@ AUTO_KEYWORD_TERMS: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("PHP", ("php",)),
     ("Swift", ("swift",)),
     ("Python", ("python",)),
-    ("TypeScript", ("typescript", "ts")),
+    # Evidence 2026-10-12: TypeScript is substring-matched, so a bare "ts" alias
+    # tagged agents/quickstarts/contents/starts/fermats (commerce-agents,
+    # claude-quickstarts, claude-code-base-action, oncall-kit,
+    # fermats-last-theorem) as TypeScript.
+    ("TypeScript", ("typescript",)),
     ("Go", ("go", "golang")),
     ("Rust", ("rust",)),
     ("Jupyter", ("jupyter", "notebook")),
