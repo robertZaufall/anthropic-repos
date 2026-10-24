@@ -7,6 +7,8 @@ on:
     paths:
       - "index.html"
       - "favicon.svg"
+      - "assets/**"
+      - ".github/workflows/static.yml"
   workflow_call:
   workflow_dispatch:
 
@@ -34,8 +36,10 @@ jobs:
 
       - name: Prepare deploy folder
         run: |
+          python3 check_assets.py
           mkdir _site
           cp index.html favicon.svg _site/
+          cp -R assets _site/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

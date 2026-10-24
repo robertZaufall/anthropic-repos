@@ -6,8 +6,9 @@ This file is the working guide for agents editing `anthropic-repos`.
 
 `anthropic-repos` is a single-page static catalog of public Anthropic GitHub
 repositories. It follows a lightweight static-project shape: no framework, no
-package manager, and no build step. The page uses Tailwind from the CDN plus a
-small amount of embedded generated CSS.
+application package manager. Tailwind is precompiled into `assets/tailwind.css`
+using the pinned command in [LOCAL-ASSETS.md](LOCAL-ASSETS.md); there is no CDN runtime.
+Fonts and GitHub avatars are served locally.
 
 The page is generated from GitHub metadata by `update_stats.py`.
 

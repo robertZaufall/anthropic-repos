@@ -16,6 +16,8 @@ Usage:
 
 from __future__ import annotations
 
+from local_assets import local_avatar
+
 import argparse
 import base64
 from dataclasses import dataclass
@@ -877,7 +879,7 @@ def repo_row(repo: dict[str, Any], include_cluster: bool = False, include_tracti
     desc = escape(repo["description"] or "No description provided.")
     topic_html = keyword_buttons(repo)
     owner = repo["full_name"].split("/", 1)[0]
-    avatar = f"https://github.com/{escape(owner)}.png?size=32"
+    avatar = local_avatar(owner)
     name_cell = (
         f'<div class="repo-name"><img src="{avatar}" alt="" class="avatar">'
         f'<a href="{escape(repo["url"])}" target="_blank" rel="noreferrer">{escape(repo["name"])}</a></div>'
@@ -1071,31 +1073,8 @@ def render_html(
 </script>
 <title>Anthropic GitHub Repository Atlas</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {{
-    theme: {{
-      extend: {{
-        colors: {{
-          anthropic: {{
-            ink: '#14110f',
-            panel: '#1d1814',
-            clay: '#d97757',
-            cream: '#f4efe7',
-            muted: '#b8a99d',
-          }},
-        }},
-        fontFamily: {{
-          sans: ['Inter', 'system-ui', 'sans-serif'],
-          mono: ['JetBrains Mono', 'monospace'],
-        }},
-      }},
-    }},
-  }};
-</script>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
+<link rel="stylesheet" href="assets/tailwind.css">
 <style>
   :root {{
     --bg: #14110f;
