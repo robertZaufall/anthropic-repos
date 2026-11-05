@@ -255,6 +255,10 @@ CLUSTERS: tuple[Cluster, ...] = (
             "protein",
             "genomics",
             "zero-copy",
+            # Evidence 2026-11-05: FlashProve is a research prototype for
+            # zero-knowledge proofs of AI inference (Lean 4 soundness proof);
+            # it fell to the Claude Code default bucket.
+            "zero-knowledge",
         ),
     ),
 )
@@ -701,6 +705,10 @@ def cluster_repo(repo: dict[str, Any]) -> Cluster:
             "agent-sdk",
             "long-running-agents",
             "base-action",
+            # Evidence 2026-11-05: single-agent-loop-kit (no description) is a
+            # starter kit for folding subagents into one agent loop; README
+            # wording about skills pulled it into Skills & Plugins.
+            "single-agent-loop",
         ),
         "sdks-api-cli": (
             "anthropic-sdk",
